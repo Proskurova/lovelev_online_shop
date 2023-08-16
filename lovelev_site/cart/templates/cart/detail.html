@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2>Ваш заказ</h2>
+  <table class="cart">
+    <thead>
+      <tr>
+        <th>Картинка</th>
+        <th>Товар</th>
+        <th> </th>
+        <th>Размер</th>
+        <th>Обновить кол-во</th>
+        <th>Удалить</th>
+        <th>Кол-во</th>
+        <th>Цена за шт</th>
+        <th>Общая стоимость</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart %}
+        {% with product=item.product %}
+          <tr>
+            <td>{% for image in product.images.all %}
+                  {% if image.default %}
+				    <a class="card-img"> <img src="{{ image.image.url }}" width="70" height="70"></a>
+			      {% endif %}
+			    {% endfor %}
+            </td>
+            <td>{{ item.product.name }}</td>
+            <td> </td>
+            <th>{{ item.size }}</th>
+
+            <th>
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                  {{ item.update_quantity_form.quantity }}
+                  {{ item.update_quantity_form.sizes }}
+                  {{ item.update_quantity_form.update }}
+                  <input type="submit" value="Обновить">
+                  {% csrf_token %}
+                </form>
+            </th>
+            <td><a href="{% url 'cart:cart_remove' product.id item.size %}">Удалить</a></td>
+            <td>
+              {{ item.quantity }}
+            </td>
+            <td class="num">{{ item.price }} BYN</td>
+            <td class="num">{{ item.total_price }} BYN</td>
+          </tr>
+        {% endwith %}
+      {% endfor %}
+      <tr class="total">
+        <th>Сумма:</th>
+        <td colspan="4"></td>
+        <td class="num">{{ cart.get_total_price }} BYN</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="text-right">
+    <a href="{% url 'home' %}" class="button light">В магазин</a>
+    <td colspan="4"></td>
+    <a href="#" class="button">Оформить заказ</a>
+  </p>
+
+{% endblock body %}
