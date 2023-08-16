@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2>Избранное</h2>
+  <table class="favourites">
+    <thead>
+      <tr>
+        <th>Картинка</th>
+        <th>Товар</th>
+        <td>
+        </td>
+        <td>
+        </td>
+        <th>Цена</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in favourites %}
+        {% with product=item.product %}
+          <tr>
+            <td>{% for image in product.images.all %}
+                  {% if image.default %}
+				    <a href="{% url 'product_detail' product.slug %}"><img src="{{ image.image.url }}" width="170" height="170"></a>
+			      {% endif %}
+			    {% endfor %}
+            </td>
+            <td><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></td>
+            <td>
+            </td>
+            <td><a href="{% url 'favourites:favourites_remove' product.pk %}">Удалить</a></td>
+            <td class="num">{{ item.price }} BYN</td>
+          </tr>
+        {% endwith %}
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="text-right">
+    <td colspan="4"></td>
+    <a href="{% url 'home' %}" class="button light">Вернуться в магазин</a>
+  </p>
+
+{% endblock body %}
