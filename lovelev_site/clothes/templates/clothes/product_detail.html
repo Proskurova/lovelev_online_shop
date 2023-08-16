@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block body %}
+<ul>
+	<div>
+		<div>
+			{% for image in product.images.all %}
+				<img src="{{ image.image.url }}" width="450" height="500">
+			{% endfor %}
+		</div>
+
+		<div>
+			<h2>{{ product.name }}</h2>
+			<p><h5>Категория:</h5> {{ product.cat }}</p>
+			<h5>Цена:</h5><p>{{ product.price }} BYN </p>
+			<form action="{% url 'cart:cart_add' product.id %}" method="post">
+				{{ cart_product_form }}
+				{% csrf_token %}
+				<input type="submit" value="Добавить в корзину">
+			</form>
+            </a>
+			<h5>Описание:</h5>
+			<p>{{ product.description }}</p>
+		</div>
+	</div>
+</ul>
+{% endblock body %}
