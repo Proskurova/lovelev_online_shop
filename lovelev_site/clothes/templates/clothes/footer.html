@@ -1,0 +1,74 @@
+{% load static %}
+
+<div class="footer">
+    <div class="main_footer">
+        <ul>
+            <div class="footer_block1">
+                <div class="footer_block1_logo">
+                    <span><a href="{% url 'home' %}"><img class="header_logo" src="{% static 'clothes/image/logo.png' %}"></a></span>
+                </div>
+                <div class="font-400-14 footer_block1_text">
+                    <p>
+                        Интернет-магазин зарегестророван в&nbsp;Торговом реестре
+                        РБ&nbsp;00.00.0000
+                    </p>
+                    <p>
+                        Свидетельство государствееной регистрации № 690872698 от
+                        05.06.2023 выдано Логойским райисполкомом
+                    </p>
+                    <p>
+                        Адрес: 223141&nbsp;Республика Беларусь, Минская обл.,
+                        г.&nbsp;Логойск, ул.&nbsp;Золотая горка, д.&nbsp;2,
+                        кв.&nbsp;10
+                    </p>
+                    <p>
+                        ИП Левко Татьяна Владимировна
+                    </p>
+                    <p>
+                        УНП 690872698
+                    </p>
+                </div>
+            </div>
+            <div class="footer_block_next">
+                <ul>
+                    {% for footer_item in footer_items %}
+                    {% if footer_item.get_children %}
+                            <li class="footer_list_main font-500-18">
+                                <a>{{ footer_item }}</a>
+
+                                <ul class="footer_list">
+                                    {% for f_item in footer_item.get_children %}
+                                        <li class="font-400-16">
+                                            <a href="{% url footer_item.url f_item.url %}">{{ f_item }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <div class="footer_list_button">
+                    <a class="shop_button" href="#">Задать вопрос</a>
+                </div>
+            </div>
+        </ul>
+    <div class="footer_rectangle"></div>
+    <div class="footer_logo_networks">
+        <ul>
+            <li >
+                <a href="#" target="_blank" rel="nofollow">
+                    <img src="{% static 'clothes/image/viber.png' %}">
+                </a>
+            </li>
+            <li>
+                <a href="https://instagram.com/lovelev_store?igshid=MzRlODBiNWFlZA==" target="_blank" rel="nofollow">
+                    <img src="{% static 'clothes/image/instagram.png' %}">
+                </a>
+            </li>
+            <li class="font-400-14">
+                <span>Прием заказов и оплата на сайте круглосуточно без выходных</span>
+            </li>
+
+        </ul>
+    </div>
+</div>
