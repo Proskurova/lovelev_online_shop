@@ -2,13 +2,11 @@ from django import forms
 from clothes.models import Product
 
 
-PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 11)]
-
-
 class CartAddProductForm(forms.Form):
-    quantity = forms.TypedChoiceField(label='Количество',
-                                      choices=PRODUCT_QUANTITY_CHOICES,
-                                      coerce=int)
+    quantity = forms.IntegerField(label='Количество', initial=1, max_value=10, min_value=1)
+    # quantity = forms.TypedChoiceField(label='Количество',
+    #                                   choices=PRODUCT_QUANTITY_CHOICES,
+    #                                   coerce=int)
     update = forms.BooleanField(required=False,
                                 initial=False,
                                 widget=forms.HiddenInput)

@@ -1,64 +1,65 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h2>Ваш заказ</h2>
-  <table class="cart">
-    <thead>
-      <tr>
-        <th>Картинка</th>
-        <th>Товар</th>
-        <th> </th>
-        <th>Размер</th>
-        <th>Обновить кол-во</th>
-        <th>Удалить</th>
-        <th>Кол-во</th>
-        <th>Цена за шт</th>
-        <th>Общая стоимость</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in cart %}
-        {% with product=item.product %}
-          <tr>
-            <td>{% for image in product.images.all %}
-                  {% if image.default %}
-				    <a class="card-img"> <img src="{{ image.image.url }}" width="70" height="70"></a>
-			      {% endif %}
-			    {% endfor %}
-            </td>
-            <td>{{ item.product.name }}</td>
-            <td> </td>
-            <th>{{ item.size }}</th>
-
-            <th>
-                <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                  {{ item.update_quantity_form.quantity }}
-                  {{ item.update_quantity_form.sizes }}
-                  {{ item.update_quantity_form.update }}
-                  <input type="submit" value="Обновить">
-                  {% csrf_token %}
+    <div class="cart_page">
+        <div class="cart">
+            <div class="font-600-24">Ваш заказ:</div>
+            <div class="cart_goods">
+                <div class="cart_line"></div>
+                <table class="cart_table">
+                    <tbody>
+                    {% for item in cart %}
+                        {% with product=item.product %}
+                            <tr>
+                                <td class="cart_img">
+                                    {% for image in product.images.all %}
+                                        {% if image.default %}
+                                            <a class="card_img"> <img src="{{ image.image.url }}"></a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="cart_name">
+                                    <div class="font-400-16-black cart_name">{{ item.product.name }}</div>
+                                    <div class="font-400-12 cart_name">Размер: {{ item.size }}</div>
+                                </td>
+                                <td class="cart_update">
+                                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                        {{ item.update_quantity_form.quantity }}
+                                        {{ item.update_quantity_form.sizes }}
+                                        {{ item.update_quantity_form.update }}
+                                        <input class="font-400-12-black" type="submit" value="Обновить">
+                                        {% csrf_token %}
+                                    </form>
+                                </td>
+                                <td class="cart_total_price">{{ item.total_price }} BYN</td>
+                                <td>
+                                    <a href="{% url 'cart:cart_remove' product.id item.size %}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <g clip-path="url(#clip0_141_4958)">
+                                        <path d="M4.73633 4.28906L11.2608 10.7648" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.5" stroke-miterlimit="10"/>
+                                        <path d="M4.76172 10.786L11.2372 4.26172" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.5" stroke-miterlimit="10"/>
+                                        <path d="M7.99975 15.7495C12.2798 15.7495 15.7495 12.2798 15.7495 7.99975C15.7495 3.71968 12.2798 0.25 7.99975 0.25C3.71968 0.25 0.25 3.71968 0.25 7.99975C0.25 12.2798 3.71968 15.7495 7.99975 15.7495Z" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.5" stroke-miterlimit="10"/>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_141_4958">
+                                        <rect width="16" height="16" fill="white"/>
+                                        </clipPath>
+                                        </defs>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endwith %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="cart_line"></div>
+                <div class="font-400-16-black cart_sum">Сумма: {{ cart.get_total_price }}BYN</div>
+            </div>
+            <div class="font-500-18">Введите данные получателя</div>
+                <form action="#" method="post">
+                    {% csrf_token %}
                 </form>
-            </th>
-            <td><a href="{% url 'cart:cart_remove' product.id item.size %}">Удалить</a></td>
-            <td>
-              {{ item.quantity }}
-            </td>
-            <td class="num">{{ item.price }} BYN</td>
-            <td class="num">{{ item.total_price }} BYN</td>
-          </tr>
-        {% endwith %}
-      {% endfor %}
-      <tr class="total">
-        <th>Сумма:</th>
-        <td colspan="4"></td>
-        <td class="num">{{ cart.get_total_price }} BYN</td>
-      </tr>
-    </tbody>
-  </table>
-  <p class="text-right">
-    <a href="{% url 'home' %}" class="button light">В магазин</a>
-    <td colspan="4"></td>
-    <a href="#" class="button">Оформить заказ</a>
-  </p>
-
+        </div>
+    </div>
 {% endblock body %}

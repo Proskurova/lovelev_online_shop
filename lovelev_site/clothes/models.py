@@ -39,6 +39,7 @@ class Product(models.Model):
     time_create = models.DateTimeField(auto_now_add=True, verbose_name="Время создания")
     time_update = models.DateTimeField(auto_now=True, verbose_name="Время изменения")
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name="Категории")
+    popular = models.BooleanField(default=True, verbose_name="Популярное")
 
     class Meta:
         ordering = ('name',)
@@ -62,9 +63,10 @@ class Image(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    photo = models.ImageField(upload_to="photos_cat/%Y/%m/%d/", verbose_name="Фото категории")
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('id',)
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
@@ -75,7 +77,22 @@ class Category(models.Model):
         return reverse('category', kwargs={'cat_slug': self.slug})
 
 
+class Information(models.Model):
+    name = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    text = models.TextField(blank=True, verbose_name="Текст")
+    image = models.ImageField(upload_to="photos_data/%Y/%m/%d/", verbose_name="Фото")
 
+    class Meta:
+        ordering = ('id',)
+        verbose_name = 'Информация'
+        verbose_name_plural = 'Информации'
+
+    def __str__(self):
+        return str(self.name)
+
+    def get_absolute_url(self):
+        return reverse('information', kwargs={'information_slug': self.slug})
 
 
 

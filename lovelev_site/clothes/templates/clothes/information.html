@@ -1,5 +1,24 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>{{ title }}</h1>
+    <div class="gaps80"></div>
+    <div class="container">
+        <div class="title">
+            <div class="font-400-44">{{ title }}</div>
+            <div><div class="rectangle"></div></div>
+        </div>
+        <ul>
+        {% for c in content %}
+            {%  if title.name == c.name %}
+                <div class="text_data font-400-14">
+                    {{ c.text }}
+                </div>
+                <div>
+                    <img src="{{ c.image.url }}">
+                </div>
+            {% endif %}
+        {% endfor %}
+        </ul>
+        <div class="gaps120"></div>
+    </div>
 {% endblock body %}
