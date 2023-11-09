@@ -24,7 +24,6 @@ class Cart(object):
         """
         Перебираем товары в корзине и получаем товары из базы данных.
         """
-        # self.cart.clear()
         keys = self.cart.keys()
         # получаем товары и добавляем их в корзину
 
@@ -83,3 +82,4 @@ class Cart(object):
         # очищаем корзину в сессии
         del self.session[settings.CART_SESSION_ID]
         self.save()
+

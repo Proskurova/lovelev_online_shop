@@ -95,6 +95,18 @@ class Information(models.Model):
         return reverse('information', kwargs={'information_slug': self.slug})
 
 
+class TableSizes(models.Model):
+    name = models.CharField(max_length=5, db_index=True, verbose_name="Размеры")
+    russianSize = models.TextField(blank=True, verbose_name="Российский размер")
+    chest = models.IntegerField(blank=True, verbose_name="Обхват груди")
+    waist = models.IntegerField(blank=True, verbose_name="Обхват талии")
+    hip = models.IntegerField(blank=True, verbose_name="Обхват бедер")
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = 'Таблица размеров'
+        verbose_name_plural = 'Таблицы размеров'
+
 
 
 

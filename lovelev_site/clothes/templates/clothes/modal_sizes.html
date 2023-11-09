@@ -1,0 +1,28 @@
+{% load static %}
+
+{% block body %}
+    <div class="modal-table-sizes">
+       <table class="table-sizes">
+            <thead>
+                <tr class="head-table">
+                    <th class="head-table-column">Размеры</th>
+                    <th class="head-table-column">Российский размер</th>
+                    <th class="head-table-column">Обхват груди</th>
+                    <th class="head-table-column">Обхват талии</th>
+                    <th class="head-table-column">Обхват бедер</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in sizes %}
+                    <tr class="head-table">
+                        <td class="table-column">{{ size.name }}</td>
+                        <td class="table-column">{{ size.russianSize }}</td>
+                        <td class="table-column">{{ size.chest }}</td>
+                        <td class="table-column">{{ size.waist }}</td>
+                        <td class="table-column">{{ size.hip }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

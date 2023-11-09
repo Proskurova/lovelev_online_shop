@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, ListView, TemplateView
 from django.core.paginator import Paginator
-
+from cart.cart import Cart
 from .models import *
 from cart.forms import *
 
@@ -81,7 +81,8 @@ def product_detail(request: WSGIRequest, product_slug: str) -> HttpResponse:
                                 slug=product_slug,
                                 available=True)
     cart_product_form = CartAddProductForm(product.pk)
-    return render(request, 'clothes/product_detail.html', {'product': product, 'cart_product_form': cart_product_form})
+    sizes = TableSizes.objects.all()
+    return render(request, 'clothes/product_detail.html', {'product': product, 'cart_product_form': cart_product_form, 'sizes': sizes}, )
 
 
 class Information(ListView):

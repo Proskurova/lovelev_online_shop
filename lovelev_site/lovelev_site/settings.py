@@ -20,6 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+
+
 # Start Django-environ
 env = environ.Env(
     DEBUG=(bool, False)
@@ -29,6 +31,13 @@ env.read_env(os.path.join(BASE_DIR, '.env'))
 
 CART_SESSION_ID = env('CART_SESSION_ID')
 FAVOURITES_SESSION_ID = env('FAVOURITES_SESSION_ID')
+
+# CELERY
+CELERY_BROKER_URL = env('CELERY_BROKER_URL')
+CELERY_TASK_TRACK_STARTED = True
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -56,7 +65,7 @@ INSTALLED_APPS = [
     'mptt',
     'multiselectfield',
     'orders.apps.OrdersConfig',
-    'phonenumber_field'
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +159,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'localhost'
+# EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+# EMAIL_PORT = 2525
+# DEFAULT_FROM_EMAIL = 'admin@lovelev_site.com'

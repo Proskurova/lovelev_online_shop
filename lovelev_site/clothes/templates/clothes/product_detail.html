@@ -3,50 +3,92 @@
 
 {% load static %}
 
+
 {% block body %}
     <div class="gaps80"></div>
     <div class="padding">
         <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
+            <a href="{% url 'category' product.cat.slug %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M23 10C23 9.82321 22.9135 9.65367 22.7594 9.52866C22.6054 9.40366 22.3965 9.33343 22.1786 9.33343H2.80564L7.97539 5.13935C8.12962 5.01418 8.21627 4.84442 8.21627 4.66742C8.21627 4.49041 8.12962 4.32065 7.97539 4.19548C7.82116 4.07032 7.61197 4 7.39385 4C7.17574 4 6.96655 4.07032 6.81232 4.19548L0.24131 9.52807C0.164818 9.58998 0.10413 9.66354 0.0627232 9.74452C0.0213146 9.82551 0 9.91232 0 10C0 10.0877 0.0213146 10.1745 0.0627232 10.2555C0.10413 10.3365 0.164818 10.41 0.24131 10.4719L6.81232 15.8045C6.96655 15.9297 7.17574 16 7.39385 16C7.61197 16 7.82116 15.9297 7.97539 15.8045C8.12962 15.6794 8.21627 15.5096 8.21627 15.3326C8.21627 15.1556 8.12962 14.9858 7.97539 14.8607L2.80564 10.6666H22.1786C22.3965 10.6666 22.6054 10.5963 22.7594 10.4713C22.9135 10.3463 23 10.1768 23 10Z" fill="#1E1E1E"/>
-            </svg>
+                </svg>
+            </a>
         </div>
         <ul class="card_goods">
             <div class="photo_card_flipping">
                 {% for image in product.images.all %}
-                    <a href="#">
-                        <img src="{{ image.image.url }}" width="460" height="454">
-                    </a>
+                    {% if image.default %}
+                        <a class="popup-link" href="#popup_image">
+                            <img src="{{ image.image.url }}" width="460" height="454">
+                        </a>
+                        <div id="popup_image" class="popup">
+{#                            <a href="#header" class="popup_area"></a>#}
+                            <a href="#header" class="popup_close close-popup">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                <path d="M30 11.75L28.25 10L20 18.25L11.75 10L10 11.75L18.25 20L10 28.25L11.75 30L20 21.75L28.25 30L30 28.25L21.75 20L30 11.75Z" fill="white"/>
+                                </svg>
+                            </a>
+                            <div class="popup_body">
+                                <div class="popup_content_image">
+                                    <img src="{{ image.image.url }}" width="574" height="718">
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
             <div>
-                <h2 class="font-400-44">{{ product.name }}</h2>
-                <p class="font-500-18">Категория: {{ product.cat }}</p>
-                <p class="font-400-18">{{ product.description }}</p>
+                <h2 class="font-400-44 card_text">{{ product.name }}</h2>
+                <p class="font-500-18-grey card_text">Категория: {{ product.cat }}</p>
+                <p class="font-400-18 card_text">{{ product.description }}</p>
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                    <ul>
+                    <ul class="card_form">
                         <div>
-                            <div>
+                            <div class="font-500-18 card_label">
                                 {{ cart_product_form.sizes.label }}
                             </div>
+                            <div>
                             {{ cart_product_form.sizes }}
+                            </div>
                         </div>
                         <div>
-                            <div>
+                            <div class="font-500-18 card_label">
                                 {{ cart_product_form.quantity.label }}
                             </div>
-{#                            <button value="-" class="minus">-</button>#}
-                            {{ cart_product_form.quantity }}
-{#                            <button value="+" class="plus">+</button>#}
+                            <div class="card-quantity">
+                                <div class="number-input-card">
+                                    <button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17 13H7C6.52857 13 6 12.55 6 12C6 11.45 6.52857 11 7 11H17C17.4714 11 18 11.45 18 12C18 12.55 17.4714 13 17 13Z" fill="#1E1E1E"/>
+                                        </svg>
+                                    </button>
+                                    {{ cart_product_form.quantity }}
+                                    <button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.1429 12.8571H12.8571V17.1429C12.8571 17.6143 12.4714 18 12 18C11.5286 18 11.1429 17.6143 11.1429 17.1429V12.8571H6.85714C6.38571 12.8571 6 12.4714 6 12C6 11.5286 6.38571 11.1429 6.85714 11.1429H11.1429V6.85714C11.1429 6.38571 11.5286 6 12 6C12.4714 6 12.8571 6.38571 12.8571 6.85714V11.1429H17.1429C17.6143 11.1429 18 11.5286 18 12C18 12.4714 17.6143 12.8571 17.1429 12.8571Z" fill="#1E1E1E"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
                         {% csrf_token %}
                     </ul>
-                    <ul>
-                        <li class="font-400-44">
+                    <div class="font-400-12 card_table_sizes">
+                        <a class="popup-link" href="#popup_sizes" title = "Просмотреть таблицу размеров"> Таблица размеров </a>
+                    </div>
+                    <div class="card_padding_bottom"><div class="card_rectangle"></div></div>
+                    <ul class="card_price_button">
+                        <li class="font-400-44 card_price">
                             {{ product.price }} BYN
                         </li>
                         <li>
-                            <input class="shop_button" type="submit" value="Добавить в корзину">
+                            <input class="card_button" type="submit" value="Добавить в корзину">
+                        </li>
+                        <li class="card_favourites">
+                            <a href="{% url 'favourites:favourites_add' product.id %}">
+                                <img src="{% static 'clothes/image/Vector.png' %}" width="25" height="24">
+                            </a>
                         </li>
                     </ul>
                 </form>
@@ -66,6 +108,20 @@
                     <image x="7" y="5" href="{% static 'clothes/image/chevron_right.png' %}" width="20" height="21" />
                 </svg>
             </button>
+        </div>
+        <div id="popup_sizes" class="popup">
+{#            <a href="#header" class="popup_area"></a>#}
+            <a href="#header" class="popup_close close-popup">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M30 11.75L28.25 10L20 18.25L11.75 10L10 11.75L18.25 20L10 28.25L11.75 30L20 21.75L28.25 30L30 28.25L21.75 20L30 11.75Z" fill="white"/>
+                </svg>
+            </a>
+            <div class="popup_body">
+                <div class="popup_content">
+                    <div class="popup_title">Таблица размеров</div>
+                    <div class="popup_text">{% include 'clothes/modal_sizes.html' %}</div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock body %}

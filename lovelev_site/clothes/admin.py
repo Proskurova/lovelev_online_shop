@@ -19,7 +19,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'name')
     search_fields = ('name', 'available', )
     list_editable = ('available', )
-    list_filter = ('available', )
+    list_filter = ('available', 'cat')
     prepopulated_fields = {"slug": ("name",)}
     inlines = [ImageInline, ]
 
@@ -38,7 +38,15 @@ class InformationAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 
+class TableSizesAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'russianSize', 'chest', 'waist', 'hip')
+    list_display_links = ('id', 'name')
+    search_fields = ('name',)
+    list_filter = ('name',)
+
+
 admin.site.register(MenuItem, MenuItemMPTTModelAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Information, InformationAdmin)
+admin.site.register(TableSizes, TableSizesAdmin)
