@@ -14,8 +14,9 @@ def order_created(order_id):
                 Ваш идентификатор заказа равен {order.id}.'
     mail_sent = send_mail(subject,
                           message,
-                          'admin@lovelev_site.com',
+                          'admin@lovelev.com',
                           [order.email])
     return mail_sent
+
 
 
