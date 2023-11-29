@@ -1,0 +1,46 @@
+
+<div id="popup_form_question" class="popup">
+    <a href="#header" class="popup_close close-popup">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <path d="M30 11.75L28.25 10L20 18.25L11.75 10L10 11.75L18.25 20L10 28.25L11.75 30L20 21.75L28.25 30L30 28.25L21.75 20L30 11.75Z" fill="white"/>
+        </svg>
+    </a>
+    <div class="popup_body">
+        <div class="popup_content">
+            <div class="popup_text">
+                <div class="popup_title">Остались вопросы?</div>
+                <div class="font-400-14">Оставьте заявку и мы свяжемся с вами в ближайшее время</div>
+                <div class="popup_question_footer">
+                    <div class="form">
+                        <form id="question_user_form" novalidate autocomplete="off" action="{% url 'question_user_form' %}" method="post">
+                        {% csrf_token %}
+                            <label for="{{ question_user_form.username.id_for_label }}" class="footer_form_text">{{ question_user_form.username.label }}<span class="text-danger">*</span></label>
+                            <div>{{ question_user_form.username }}</div>
+                            <div class="form-error">{{ question_user_form.username.errors }}</div>
+                            <label for="{{ question_user_form.phone.id_for_label }}" class="footer_form_text">{{ question_user_form.phone.label }}<span class="text-danger">*</span></label>
+                            <div>{{ question_user_form.phone }}</div>
+                            <div class="form-error">
+                                <div class="errorlist">{{ question_user_form.phone.errors }}</div>
+                            </div>
+                            <div class="footer_form_text">
+                                <label for="{{ question_user_form.question.id_for_label }}" class="footer_form_text">{{ question_user_form.question.label }}<span class="text-danger">*</span></label>
+                                {{ question_user_form.question }}
+                            </div>
+                            <div class="form-error">
+                                <div class="errorlist">{{ question_user_form.question.errors }}</div></div>
+                            <ul class="form_center footer_form_text">
+                                <li class="form_padding">{{ question_user_form.approval }}</li>
+                                <li>{{question_user_form.approval.label }}</li>
+                            </ul>
+                            <div class="form-error">{{ question_user_form.approval.errors }}</div>
+                            <div class="form_center footer_form_text"><input id='check_value' class="button_footer" type="submit" value="Отправить"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="success">
+                <div class="success_text"></div>
+            </div>
+        </div>
+    </div>
+</div>
