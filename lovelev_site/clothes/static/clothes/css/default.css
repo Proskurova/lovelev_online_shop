@@ -1,5 +1,5 @@
 html {
-    --container: 1200px;
+    /*--container: 1200px;*/
     /*--padding-container: 41px;*/
     box-sizing: border-box;
     /*position: relative;*/
@@ -12,10 +12,12 @@ html {
 
 body {
     font-family: "Noto Sans", sans-serif;
-    min-width: 1200px;
+    /*min-width: 1118px;*/
     min-height: 100vh;
     background-color: #FFF;
     color: #1E1E1E;
+    margin-left: auto;
+    margin-right: auto;
      /*position: relative;*/
     /*overflow: hidden;*/
 }
@@ -60,8 +62,8 @@ fieldset {
     transform: scale(0);
 }
 
-/*.container {*/
-/*    max-width: calc(var(--container) + (var(--padding-container) * 2));*/
-/*    padding: 0 var(--padding-container);*/
-/*    margin: 0 auto;*/
-/*}*/
+@media (max-width: 767px) {
+    .section {
+        display: flex;
+    }
+}

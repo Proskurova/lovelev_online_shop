@@ -3,131 +3,138 @@
 {% load static %}
 
 {% block body %}
-    <div class="gaps80"></div>
-    <div class="main">
-        <div>
-            <ul class="main_text">
-                <h1 class="main main_phrase">
-                    Меньше одежды — больше комплектов
-                </h1>
-                <div class="main_phrase_two">
-                    <div class="font-400-16"><br>Качественные базовые вещи — отличный выбор <br>
-                    для любого случая<br><br></div>
-                    <div class="main_button">
-                        <a class="shop_button" href="{% url 'shop' %}">В магазин</a>
+    <div class="wrapper">
+        <div class="gaps80"></div>
+        <div class="main">
+            <div>
+                <ul class="main_text">
+                    <h1 class="main main_phrase">
+                        Меньше одежды — больше комплектов
+                    </h1>
+                    <div class="main_phrase_two">
+                        <div class="font-400-16"><br>Качественные базовые вещи — отличный выбор <br>
+                        для любого случая<br><br></div>
+                        <div class="main_button">
+                            <a class="shop_button" href="{% url 'shop' %}">В магазин</a>
+                        </div>
                     </div>
+                </ul>
+            </div>
+            <div>
+                <a href="{% url 'shop' %}">
+                    <img src="{% static 'clothes/image/lovelev.png' %}">
+                </a>
+            </div>
+
+        </div>
+        <div class="gaps80"></div>
+        <div class="icons-3">
+            <div class="icons-3-characteristics">
+                <div>
+                    <svg class="circle" xmlns="http://www.w3.org/2000/svg">
+                        <image x="28.5" y="29" href="{% static 'clothes/image/quality.png' %}" width="40" height="38"/>
+                    </svg>
                 </div>
-            </ul>
-        </div>
-        <div>
-            <a href="{% url 'shop' %}">
-                <img src="{% static 'clothes/image/lovelev.png' %}">
-            </a>
-        </div>
-
-    </div>
-    <div class="gaps80"></div>
-    <div class="icons-3">
-        <div class="icons-3-characteristics">
-            <div>
-                <svg class="circle" xmlns="http://www.w3.org/2000/svg">
-                    <image x="28.5" y="29" href="{% static 'clothes/image/quality.png' %}" width="40" height="38"/>
-                </svg>
+                <div class="font-500-18">Качество</div>
+                <div class="font-400-14">
+                      <span>Наши вещи будут служить долго и сохранят свой
+                          первоначальный вид&nbsp;после&nbsp;многих стирок</span>
+                </div>
             </div>
-            <div class="font-500-18">Качество</div>
-            <div class="font-400-14">
-                  <span>Наши вещи будут служить долго и сохранят свой
-                      первоначальный вид&nbsp;после&nbsp;многих стирок</span>
+            <div class="icons-3-characteristics">
+                <div>
+                    <svg class="circle" xmlns="http://www.w3.org/2000/svg">
+                        <image x="28.5" y="29" href="{% static 'clothes/image/style.png' %}" width="40" height="38" />
+                    </svg>
+                </div>
+                <div class="font-500-18">Стиль</div>
+                <div class="font-400-14">
+                      <span>Выбирая вещи из нашей коллекции, вы легко создадите
+                          стильный образ на&nbsp;каждый день</span>
+                </div>
             </div>
-        </div>
-        <div class="icons-3-characteristics">
-            <div>
-                <svg class="circle" xmlns="http://www.w3.org/2000/svg">
-                    <image x="28.5" y="29" href="{% static 'clothes/image/style.png' %}" width="40" height="38" />
-                </svg>
-            </div>
-            <div class="font-500-18">Стиль</div>
-            <div class="font-400-14">
-                  <span>Выбирая вещи из нашей коллекции, вы легко создадите
-                      стильный образ на&nbsp;каждый день</span>
+            <div class="icons-3-characteristics">
+                <div>
+                    <svg class="circle" xmlns="http://www.w3.org/2000/svg">
+                        <image x="28.5" y="29" href="{% static 'clothes/image/comfort.png' %}" width="40" height="38" />
+                    </svg>
+                </div>
+                <div class="font-500-18">Комфорт</div>
+                <div class="font-400-14">
+                      <span>Вы&nbsp;будете чувствовать себя комфортно,
+                          ведь&nbsp;мы&nbsp;используем ткани премиум класса</span>
+                </div>
             </div>
         </div>
-        <div class="icons-3-characteristics">
-            <div>
-                <svg class="circle" xmlns="http://www.w3.org/2000/svg">
-                    <image x="28.5" y="29" href="{% static 'clothes/image/comfort.png' %}" width="40" height="38" />
-                </svg>
-            </div>
-            <div class="font-500-18">Комфорт</div>
-            <div class="font-400-14">
-                  <span>Вы&nbsp;будете чувствовать себя комфортно,
-                      ведь&nbsp;мы&nbsp;используем ткани премиум класса</span>
-            </div>
-        </div>
-    </div>
-    <div class="gaps80"></div>
-    <div class="main_category">
-        <div class="main_category_text">
-            <h2 class="font-400-44">Категории</h2>
-            <div><div class="rectangle"></div></div>
-        </div>
-        <div class="main_category_carts">
-            <ul>
-                {% for cat in categories %}
-                    {% if cat.id == 1 or cat.id == 2 or cat.id == 3 %}
-                        {% if cat.id == 1 or cat.id == 3 %}
-                            <a class="photo_cat_higher" href="{% url 'category' cat.slug %}">
-                                <img src="{{ cat.photo.url }}">
-                                    <div class="name_category">
-                                        <div class="name font-500-18">{{ cat.name }}</div>
-                                        <div class="arrow">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 10.5C1 10.3232 1.08654 10.1537 1.24058 10.0287C1.39461 9.90366 1.60353 9.83343 1.82138 9.83343H21.1944L16.0246 5.63935C15.8704 5.51418 15.7837 5.34442 15.7837 5.16742C15.7837 4.99041 15.8704 4.82065 16.0246 4.69548C16.1788 4.57032 16.388 4.5 16.6061 4.5C16.8243 4.5 17.0334 4.57032 17.1877 4.69548L23.7587 10.0281C23.8352 10.09 23.8959 10.1635 23.9373 10.2445C23.9787 10.3255 24 10.4123 24 10.5C24 10.5877 23.9787 10.6745 23.9373 10.7555C23.8959 10.8365 23.8352 10.91 23.7587 10.9719L17.1877 16.3045C17.0334 16.4297 16.8243 16.5 16.6061 16.5C16.388 16.5 16.1788 16.4297 16.0246 16.3045C15.8704 16.1794 15.7837 16.0096 15.7837 15.8326C15.7837 15.6556 15.8704 15.4858 16.0246 15.3607L21.1944 11.1666H1.82138C1.60353 11.1666 1.39461 11.0963 1.24058 10.9713C1.08654 10.8463 1 10.6768 1 10.5Z" fill="#1E1E1E"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                            </a>
-                        {% else %}
-                            <a href="{% url 'category' cat.slug %}">
-                                <img src="{{ cat.photo.url }}">
-                                    <div class="name_category">
-                                        <ul>
-                                            <div class="name font-500-18">{{ cat.name }}</div>
-                                            <div class="arrow">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 10.5C1 10.3232 1.08654 10.1537 1.24058 10.0287C1.39461 9.90366 1.60353 9.83343 1.82138 9.83343H21.1944L16.0246 5.63935C15.8704 5.51418 15.7837 5.34442 15.7837 5.16742C15.7837 4.99041 15.8704 4.82065 16.0246 4.69548C16.1788 4.57032 16.388 4.5 16.6061 4.5C16.8243 4.5 17.0334 4.57032 17.1877 4.69548L23.7587 10.0281C23.8352 10.09 23.8959 10.1635 23.9373 10.2445C23.9787 10.3255 24 10.4123 24 10.5C24 10.5877 23.9787 10.6745 23.9373 10.7555C23.8959 10.8365 23.8352 10.91 23.7587 10.9719L17.1877 16.3045C17.0334 16.4297 16.8243 16.5 16.6061 16.5C16.388 16.5 16.1788 16.4297 16.0246 16.3045C15.8704 16.1794 15.7837 16.0096 15.7837 15.8326C15.7837 15.6556 15.8704 15.4858 16.0246 15.3607L21.1944 11.1666H1.82138C1.60353 11.1666 1.39461 11.0963 1.24058 10.9713C1.08654 10.8463 1 10.6768 1 10.5Z" fill="#1E1E1E"/>
-                                                </svg>
-                                            </div>
-                                        </ul>
-                                    </div>
-                            </a>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            <div class="text_center font-400-16">Создавайте различные образы и сочетания,<br>
-            выбирая наши базовые вещи
-            </div>
-            <div class="text_center">
-                <a class="button_transparent" href="{% url 'cat' %}">Смотреть все</a>
-            </div>
-        </div>
-
-    </div>
-    <div class="gaps120"></div>
-    <div class="popular">
-        <ul >
-            <div class="popular_text">
-                <h2 class="font-400-44">
-                    <a href="{% url 'popular' %}">Популярное</a>
-                </h2>
+        <div class="gaps80"></div>
+        <div class="main_category">
+            <div class="main_category_text">
+                <h2 class="font-400-44">Категории</h2>
                 <div><div class="rectangle"></div></div>
-                <div class="bottom_indent_20 font-400-16">
-                    <span>Будьте в тренде, выбирайте<br>
-                    свой лук!</span>
+            </div>
+            <div class="main_category_carts">
+                <ul>
+                    {% for cat in categories %}
+                        {% if cat.id == 1 or cat.id == 2 or cat.id == 3 %}
+                            {% if cat.id == 1 or cat.id == 3 %}
+                                <a class="photo_cat_higher" href="{% url 'category' cat.slug %}">
+                                    <img src="{{ cat.photo.url }}">
+                                        <div class="name_category">
+                                            <ul>
+                                                <div class="name font-500-18">{{ cat.name }}</div>
+                                                <div class="arrow">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 10.5C1 10.3232 1.08654 10.1537 1.24058 10.0287C1.39461 9.90366 1.60353 9.83343 1.82138 9.83343H21.1944L16.0246 5.63935C15.8704 5.51418 15.7837 5.34442 15.7837 5.16742C15.7837 4.99041 15.8704 4.82065 16.0246 4.69548C16.1788 4.57032 16.388 4.5 16.6061 4.5C16.8243 4.5 17.0334 4.57032 17.1877 4.69548L23.7587 10.0281C23.8352 10.09 23.8959 10.1635 23.9373 10.2445C23.9787 10.3255 24 10.4123 24 10.5C24 10.5877 23.9787 10.6745 23.9373 10.7555C23.8959 10.8365 23.8352 10.91 23.7587 10.9719L17.1877 16.3045C17.0334 16.4297 16.8243 16.5 16.6061 16.5C16.388 16.5 16.1788 16.4297 16.0246 16.3045C15.8704 16.1794 15.7837 16.0096 15.7837 15.8326C15.7837 15.6556 15.8704 15.4858 16.0246 15.3607L21.1944 11.1666H1.82138C1.60353 11.1666 1.39461 11.0963 1.24058 10.9713C1.08654 10.8463 1 10.6768 1 10.5Z" fill="#1E1E1E"/>
+                                                    </svg>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'category' cat.slug %}">
+                                    <img src="{{ cat.photo.url }}">
+                                        <div class="name_category">
+                                            <ul>
+                                                <div class="name font-500-18">{{ cat.name }}</div>
+                                                <div class="arrow">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 10.5C1 10.3232 1.08654 10.1537 1.24058 10.0287C1.39461 9.90366 1.60353 9.83343 1.82138 9.83343H21.1944L16.0246 5.63935C15.8704 5.51418 15.7837 5.34442 15.7837 5.16742C15.7837 4.99041 15.8704 4.82065 16.0246 4.69548C16.1788 4.57032 16.388 4.5 16.6061 4.5C16.8243 4.5 17.0334 4.57032 17.1877 4.69548L23.7587 10.0281C23.8352 10.09 23.8959 10.1635 23.9373 10.2445C23.9787 10.3255 24 10.4123 24 10.5C24 10.5877 23.9787 10.6745 23.9373 10.7555C23.8959 10.8365 23.8352 10.91 23.7587 10.9719L17.1877 16.3045C17.0334 16.4297 16.8243 16.5 16.6061 16.5C16.388 16.5 16.1788 16.4297 16.0246 16.3045C15.8704 16.1794 15.7837 16.0096 15.7837 15.8326C15.7837 15.6556 15.8704 15.4858 16.0246 15.3607L21.1944 11.1666H1.82138C1.60353 11.1666 1.39461 11.0963 1.24058 10.9713C1.08654 10.8463 1 10.6768 1 10.5Z" fill="#1E1E1E"/>
+                                                    </svg>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <div class="text_center font-400-16">Создавайте различные образы и сочетания,<br>
+                выбирая наши базовые вещи
                 </div>
-                <div class="name font-500-18">
-                    <a href="{% url 'popular' %}">Выбрать <svg xmlns="http://www.w3.org/2000/svg" width="25" height="21" viewBox="0 0 25 21" fill="none">
+                <div class="text_center">
+                    <a class="button_transparent" href="{% url 'cat' %}">Смотреть все</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="gaps120"></div>
+        <div class="popular">
+            <ul >
+                <div class="popular_text">
+                    <h2 class="font-400-44">
+                        <a href="{% url 'popular' %}">Популярное</a>
+                    </h2>
+                    <div><div class="rectangle"></div></div>
+                    <div class="bottom_indent_20 font-400-16">
+                        <span>Будьте в тренде, выбирайте<br>
+                        свой лук!</span>
+                    </div>
+                    <div>
+                        <a href="{% url 'popular' %}">
+                            <ul>
+                                <div class="name font-500-18">Выбрать</div>
+                                <div class="arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
                                         <g clip-path="url(#clip0_242_7714)">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 10.5C1.5 10.3232 1.58654 10.1537 1.74058 10.0287C1.89461 9.90366 2.10353 9.83343 2.32138 9.83343H21.6944L16.5246 5.63935C16.3704 5.51418 16.2837 5.34442 16.2837 5.16742C16.2837 4.99041 16.3704 4.82065 16.5246 4.69548C16.6788 4.57032 16.888 4.5 17.1061 4.5C17.3243 4.5 17.5334 4.57032 17.6877 4.69548L24.2587 10.0281C24.3352 10.09 24.3959 10.1635 24.4373 10.2445C24.4787 10.3255 24.5 10.4123 24.5 10.5C24.5 10.5877 24.4787 10.6745 24.4373 10.7555C24.3959 10.8365 24.3352 10.91 24.2587 10.9719L17.6877 16.3045C17.5334 16.4297 17.3243 16.5 17.1061 16.5C16.888 16.5 16.6788 16.4297 16.5246 16.3045C16.3704 16.1794 16.2837 16.0096 16.2837 15.8326C16.2837 15.6556 16.3704 15.4858 16.5246 15.3607L21.6944 11.1666H2.32138C2.10353 11.1666 1.89461 11.0963 1.74058 10.9713C1.58654 10.8463 1.5 10.6768 1.5 10.5Z" fill="#1E1E1E"/>
                                         </g>
@@ -136,46 +143,49 @@
                                         <rect width="24" height="20" fill="white" transform="translate(0.5 0.5)"/>
                                         </clipPath>
                                         </defs>
-                                        </svg>
-                    </a>
+                                    </svg>
+                                </div>
+                            </ul>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="cards">
-                <ul>
-                    {% for product in products %}
-                        {% if product.popular %}
-                            {% for image in product.images.all %}
-                                {% if image.default %}
-                                    <div class="card">
-                                        <ul>
+                <div class="cards">
+                    <ul>
+                        {% for product in products %}
+                            {% if product.popular %}
+                                {% for image in product.images.all %}
+                                    {% if image.default %}
+                                        <div class="card">
+                                            <ul>
+                                                <div class="cards">
+                                                    <a href="{% url 'product_detail' product.slug %}">
+                                                        <img src="{{ image.image.url }}">
+                                                    </a>
+                                                </div>
+                                                <div class="heart">
+                                                    <a href="{% url 'favourites:favourites_add' product.id %}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                                            <circle cx="18" cy="18" r="18" fill="white"/>
+                                                            <image x="6" y="8" href="{% static 'clothes/image/Vector_s.png' %}" width="23" height="20" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </ul>
                                             <div class="cards">
-                                                <a href="{% url 'product_detail' product.slug %}">
-                                                    <img src="{{ image.image.url }}">
-                                                </a>
+                                                <p class="name_product font-500-18"><a href="{% url 'product_detail' product.slug %}">{{product.name}}</a></p>
+                                                <p class="price font-500-20">{{product.price}} BYN </p>
+                                                <p><a class="shop_button" href="{% url 'product_detail' product.slug %}">Купить</a></p>
                                             </div>
-                                            <div class="heart">
-                                                <a href="{% url 'favourites:favourites_add' product.id %}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                                        <circle cx="18" cy="18" r="18" fill="white"/>
-                                                        <image x="6" y="8" href="{% static 'clothes/image/Vector_s.png' %}" width="23" height="20" />
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </ul>
-                                        <div class="cards">
-                                            <p class="name_product font-500-18"><a href="{% url 'product_detail' product.slug %}">{{product.name}}</a></p>
-                                            <p class="price font-500-20">{{product.price}} BYN </p>
-                                            <p><a class="shop_button" href="{% url 'product_detail' product.slug %}">Купить</a></p>
                                         </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-        </ul>
-    <div class="gaps80"></div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </ul>
+        <div class="gaps80"></div>
+        </div>
     </div>
 {% endblock body %}
 

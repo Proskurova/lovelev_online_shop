@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="gaps80"></div>
-    <div class="padding">
+    <div class="wrapper">
         <div>
             <a href="{% url 'category' product.cat.slug %}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
@@ -17,24 +17,7 @@
         <ul class="card_goods">
             <div class="photo_card_flipping">
                 {% for image in product.images.all %}
-                    {% if image.default %}
-                        <a class="popup-link" href="#popup_image">
-                            <img src="{{ image.image.url }}" width="460" height="454">
-                        </a>
-                        <div id="popup_image" class="popup">
-{#                            <a href="#header" class="popup_area"></a>#}
-                            <a href="#header" class="popup_close close-popup">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M30 11.75L28.25 10L20 18.25L11.75 10L10 11.75L18.25 20L10 28.25L11.75 30L20 21.75L28.25 30L30 28.25L21.75 20L30 11.75Z" fill="white"/>
-                                </svg>
-                            </a>
-                            <div class="popup_body">
-                                <div class="popup_content_image">
-                                    <img src="{{ image.image.url }}" width="574" height="718">
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
+                    <img src="{{ image.image.url }}" width="460" height="454">
                 {% endfor %}
             </div>
             <div>
@@ -95,22 +78,7 @@
 
             </div>
         </ul>
-        <div class="button_flipping">
-            <button class="button_flipping_left">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <circle cx="16" cy="16" r="16" fill="white"/>
-                    <image x="4" y="6" href="{% static 'clothes/image/chevron_left.png' %}" width="20" height="21" />
-                </svg>
-            </button>
-            <button>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="33" viewBox="0 0 32 33" fill="none">
-                    <circle cx="16" cy="16" r="16" fill="white"/>
-                    <image x="7" y="5" href="{% static 'clothes/image/chevron_right.png' %}" width="20" height="21" />
-                </svg>
-            </button>
-        </div>
         <div id="popup_sizes" class="popup">
-{#            <a href="#header" class="popup_area"></a>#}
             <a href="#header" class="popup_close close-popup">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <path d="M30 11.75L28.25 10L20 18.25L11.75 10L10 11.75L18.25 20L10 28.25L11.75 30L20 21.75L28.25 30L30 28.25L21.75 20L30 11.75Z" fill="white"/>
@@ -118,10 +86,12 @@
             </a>
             <div class="popup_body">
                 <div class="popup_content">
+                    <div class="popup_text"></div>
                     <div class="popup_title">Таблица размеров</div>
                     <div class="popup_text">{% include 'clothes/modal_sizes.html' %}</div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="gaps120"></div>
 {% endblock body %}

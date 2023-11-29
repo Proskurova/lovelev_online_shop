@@ -1,13 +1,16 @@
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
-from django.urls import reverse_lazy
-from django.views import View
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import DetailView, ListView, TemplateView
 from django.core.paginator import Paginator
-from cart.cart import Cart
 from .models import *
 from cart.forms import *
+from django.shortcuts import render
+from .forms import QuestionUserForm
+from .tasks import send_question
+
+
+from django.http import JsonResponse
 
 
 class HomeTemplateView(ListView):
@@ -29,6 +32,7 @@ class ShopView(ListView):
     model = Product
     template_name = 'clothes/product_index.html'
     context_object_name = 'products'
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -40,11 +44,11 @@ class Popular(ListView):
     model = Product
     template_name = 'clothes/product_index.html'
     context_object_name = 'products'
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Популярное'
-        context['products'] = Product.objects.filter(popular=True)
         return context
 
 
@@ -52,7 +56,7 @@ class Category(ListView):
     model = Category
     template_name = 'clothes/category.html'
     context_object_name = 'categories'
-    paginate_by = 8
+    paginate_by = 4
     # allow_empty = False
 
     def get_context_data(self, **kwargs):
@@ -65,6 +69,7 @@ class ProductCategory(ListView):
     model = Product
     template_name = 'clothes/product_index.html'
     context_object_name = 'products'
+    paginate_by = 4
     # allow_empty = False
 
     def get_queryset(self):
@@ -97,13 +102,26 @@ class Information(ListView):
         return context
 
 
-# class Delivery(TemplateView):
-#     model = MenuItem
-#     template_name = 'clothes/delivery.html'
-#
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title'] = MenuItem.objects.get(url=self.kwargs['slug'])
-#         return context
+def question_user_form(request):
+    if request.method == 'POST':
+        form = QuestionUserForm(request.POST)
+        if form.is_valid():
+            print(f"Проверка question____ {form.cleaned_data['question']}")
+            data = {
+                'username': form.cleaned_data['username'],
+                'phone': form.cleaned_data['phone'],
+                'question': form.cleaned_data['question'],
+                'approval': form.cleaned_data['approval'],
+            }
+            send_question(data)
+            return JsonResponse({'success': True})
+        else:
+            result = JsonResponse({'success': False, 'errors': form.errors, 'question_user_form': form})
+            return result
+    else:
+        question_user_form = QuestionUserForm(request)
+    return JsonResponse({'success': False, 'errors': question_user_form.errors, 'question_user_form': question_user_form})
+
+
 
 

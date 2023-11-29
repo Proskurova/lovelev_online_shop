@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from .models import OrderItem, Order
 from .forms import OrderCreateForm
@@ -20,11 +21,12 @@ def order_create(request):
                 # очистка корзины
                 cart.clear()
                 # запуск асинхронной задачи
-                # result = add.delay(5687654, 876543)
-                # print(f" Проверка ready :_______{result.ready()}")
-                order_created.delay(order.id)
-                return render(request, 'orders/created.html',
-                              {'order': order})
+                # order_created.delay(order.id)
+                order_created(order.id)
+                return JsonResponse({'success': True})
+            else:
+                return render(request, 'cart/detail.html', {'cart': cart, 'cart_form': cart_form})
+
     else:
         cart_form = OrderCreateForm
     return render(request, 'cart/detail.html', {'cart': cart, 'cart_form': cart_form})

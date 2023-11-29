@@ -1,25 +1,52 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block body %}
-    <div class="gaps80"></div>
-    <div class="title">
-        <div class="font-400-44">{{ title }}</div>
-        <div><div class="rectangle"></div></div>
-    </div>
-    <div class="cards padding">
-        <ul>
-            {% for category in categories %}
-                <a class="card" href="{% url 'category' category.slug %}"><img src="{{ category.photo.url }}">
-                    <p class="name_product font-500-18">{{category.name}}</p>
-                    <span class="shop_button">Купить</span>
-                </a>
-            {% endfor %}
-        </ul>
-    </div>
-    {% if categories|length > 8 %}
-        <div class="text_center">
-            <a class="button_transparent" href="{% url 'cat' %}">Смотреть все</a>
+    <div class="wrapper">
+        <div class="gaps80"></div>
+        <div class="title">
+            <div class="font-400-44">{{ title }}</div>
+            <div><div class="rectangle"></div></div>
         </div>
-    {% endif %}
-    <div class="gaps120"></div>
+        <div class="cards">
+            <ul>
+                {% for category in categories %}
+                    <a class="card" href="{% url 'category' category.slug %}"><img src="{{ category.photo.url }}">
+                        <p class="name_product font-500-18">{{category.name}}</p>
+                        <span class="shop_button">Купить</span>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock body %}
+{% block navigation %}
+    <div class="wrapper">
+        {% if page_obj.has_other_pages %}
+        <nav class="list-pages">
+            <ul class="list-pages-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-num">
+                         <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                    </li>
+                {% endif %}
+                {% for p in paginator.page_range %}
+                    {% if page_obj.number == p %}
+                        <li class="page-num page-num-selected">{{ p }}</li>
+                    {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+                        <li class="page-num">
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-num">
+                         <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+        <div class="gaps120"></div>
+    </div>
+{% endblock %}

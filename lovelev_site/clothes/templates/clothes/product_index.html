@@ -3,47 +3,73 @@
 {% load static %}
 
 {% block body %}
-    <div class="gaps80"></div>
-    <div class="title">
-        <div class="font-400-44">{{ title }}</div>
-        <div><div class="rectangle"></div></div>
-    </div>
-    <div class="cards padding">
-        <ul>
-            {% for p in products %}
-                {% for image in p.images.all %}
-                    {% if image.default %}
-                        <div class="card">
-                            <ul>
+    <div class="wrapper">
+        <div class="gaps80"></div>
+        <div class="title">
+            <div class="font-400-44">{{ title }}</div>
+            <div><div class="rectangle"></div></div>
+        </div>
+        <div class="cards">
+            <ul>
+                {% for p in products %}
+                    {% for image in p.images.all %}
+                        {% if image.default %}
+                            <div class="card">
+                                <ul>
+                                    <div class="cards">
+                                        <a href="{% url 'product_detail' p.slug %}">
+                                            <img src="{{ image.image.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="heart">
+                                        <a href="{% url 'favourites:favourites_add' p.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                                <circle cx="18" cy="18" r="18" fill="white"/>
+                                                <image x="6" y="8" href="{% static 'clothes/image/Vector_s.png' %}" width="23" height="20" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </ul>
                                 <div class="cards">
-                                    <a href="{% url 'product_detail' p.slug %}">
-                                        <img src="{{ image.image.url }}">
-                                    </a>
+                                    <p class="name_product font-500-18"><a href="{% url 'product_detail' p.slug %}">{{p.name}}</a></p>
+                                    <p class="price font-500-20">{{p.price}} BYN </p>
+                                    <p><a class="shop_button" href="{% url 'product_detail' p.slug %}">Купить</a></p>
                                 </div>
-                                <div class="heart">
-                                    <a href="{% url 'favourites:favourites_add' p.id %}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                            <circle cx="18" cy="18" r="18" fill="white"/>
-                                            <image x="6" y="8" href="{% static 'clothes/image/Vector_s.png' %}" width="23" height="20" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </ul>
-                            <div class="cards">
-                                <p class="name_product font-500-18"><a href="{% url 'product_detail' p.slug %}">{{p.name}}</a></p>
-                                <p class="price font-500-20">{{p.price}} BYN </p>
-                                <p><a class="shop_button" href="{% url 'product_detail' p.slug %}">Купить</a></p>
                             </div>
-                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock body %}
+{% block navigation %}
+    <div class="wrapper">
+        {% if page_obj.has_other_pages %}
+        <nav class="list-pages">
+            <ul class="list-pages-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-num">
+                         <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                    </li>
+                {% endif %}
+                {% for p in paginator.page_range %}
+                    {% if page_obj.number == p %}
+                        <li class="page-num page-num-selected">{{ p }}</li>
+                    {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+                        <li class="page-num">
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
                     {% endif %}
                 {% endfor %}
-            {% endfor %}
-        </ul>
-    {% if products|length > 8 %}
-        <div class="text_center">
-            <a class="button_transparent" href="#">Смотреть все</a>
-        </div>
-    {% endif %}
+                {% if page_obj.has_next %}
+                    <li class="page-num">
+                         <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+        <div class="gaps120"></div>
     </div>
-    <div class="gaps120"></div>
-{% endblock body %}
+{% endblock %}

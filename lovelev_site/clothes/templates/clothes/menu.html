@@ -1,12 +1,12 @@
 {% load static %}
 
 
-<nav>
+<div class="wrapper">
     <ul class="menu">
-        <li class="menu menu_logo">
+        <li class="menu_logo">
             <a href="{% url 'home' %}"> <img class="header_logo" src="{% static 'clothes/image/logo.png' %}"> </a>
         </li>
-        <li class="menu menu_item">
+        <li class="menu_item">
             <ul id="navbar">
                 {% for menu_item in menu_items %}
 
@@ -30,7 +30,7 @@
                 {% endfor %}
             </ul>
         </li>
-        <li class=" menu menu_cart_favourites">
+        <li class="menu_cart_favourites">
             {% with menu_items=cart|length %}
                 {% if cart|length > 0 %}
                     <a href="{% url 'favourites:favourites_detail' %}"><img src="{% static 'clothes/image/Vector_d.png' %}" width="25"></a>     <a href="{% url 'cart:cart_detail' %}"><img src="{% static 'clothes/image/ep_goods_d.png' %}" width="21">}</a>
@@ -40,4 +40,4 @@
             {% endwith %}
         </li>
     </ul>
-</nav>
+</div>

@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="footer">
+<div class="wrapper">
     <div class="main_footer">
         <ul>
             <div class="footer_block1">
@@ -48,7 +48,7 @@
                     {% endfor %}
                 </ul>
                 <div class="footer_list_button">
-                    <a class="shop_button" href="#">Задать вопрос</a>
+                    <a class="shop_button popup-link" href="#popup_form_question">Задать вопрос</a>
                 </div>
             </div>
         </ul>
@@ -72,4 +72,5 @@
 
         </ul>
     </div>
+    {% include 'clothes/popup_form.html' %}
 </div>
