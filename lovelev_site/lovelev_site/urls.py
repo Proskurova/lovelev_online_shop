@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('cart/', include('cart.urls', namespace='cart')),
     path('favourites/', include('favourites.urls', namespace='favourites')),
     path('orders/', include('orders.urls', namespace='orders')),

@@ -4,6 +4,7 @@
 
 {% block body %}
     <div class="wrapper">
+        <div class="gaps80"></div>
         <div class="cart_page">
             <div class="cart">
                 <div class="font-600-24">Ваш заказ:</div>
@@ -147,9 +148,7 @@
                 </div>
             </div>
         </div>
-        <div class="popup_question_card">
-            <a class="popup-link" href="#popup_created" onclick="show()"></a>
-        </div>
+        <a class="popup-link" href="#popup_created"></a>
         <div id="popup_created" class="popup">
             <a href="#header" class="popup_close close-popup">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -161,7 +160,7 @@
                     <div class="popup_text">
                         <div class="success">
                             <div class="success_text">
-                                Ваш заказ № {{ order.id }} принят!
+                                Ваша заявка принята!
                                 <br>
                                 Благодарим за заказ!
                             </div>

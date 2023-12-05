@@ -2,42 +2,49 @@
 
 
 <div class="wrapper">
-    <ul class="menu">
-        <li class="menu_logo">
-            <a href="{% url 'home' %}"> <img class="header_logo" src="{% static 'clothes/image/logo.png' %}"> </a>
-        </li>
-        <li class="menu_item">
-            <ul id="navbar">
-                {% for menu_item in menu_items %}
+    <div class="menu">
+        <ul class="menu_list">
+            <div class="header_burger">
+                    <span></span>
+            </div>
+            <li class="menu_logo">
+                <a class="menu_link" href="{% url 'home' %}"> <img src="{% static 'clothes/image/logo.png' %}"></a>
+            </li>
+                <nav class="header_menu">
+                    <ul class="header_list">
+                        {% for menu_item in menu_items %}
+                            {% if menu_item.get_children %}
+                                <li class="menu_item">
+                                    <a class="header_link">{{ menu_item }}<span class="menu_arrow"></span></a>
 
-                    {% if menu_item.get_children %}
-                        <li>
-                            <a>{{ menu_item }}</a>
+                                    <ul class="sub-header_list">
+                                        {% for m_item in menu_item.get_children %}
+                                            <li class="submenu"><a class="sub-header_link" href="{% url menu_item.url m_item.url %}">{{ m_item }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li class="menu_item"><a class="header_link" href="{% url menu_item.url %}">{{ menu_item }}</a></li>
+                            {% endif %}
 
-                            <ul>
-                                {% for m_item in menu_item.get_children %}
-                                    <li class="navbar"><a class="dropdown-item" href="{% url menu_item.url m_item.url %}">{{ m_item }}</a></li>
-                                {% endfor %}
-                            </ul>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                {% with menu_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        <li class="menu_cart_favourites">
+                            <a class="menu_link" href="{% url 'favourites:favourites_detail' %}"><img src="{% static 'clothes/image/Vector_d.png' %}" width="25"></a>
+                            <a class="menu_link" href="{% url 'cart:cart_detail' %}"><img src="{% static 'clothes/image/ep_goods_d.png' %}" width="21">}</a>
+                            <a class="menu_link" href="#"><img src="{% static 'clothes/image/login.png' %}" width="25">}</a>
                         </li>
                     {% else %}
-                        <li class="">
-                            <a href="{% url menu_item.url %}">{{ menu_item }}</a>
+                        <li class="menu_cart_favourites">
+                            <a class="menu_link" href="{% url 'favourites:favourites_detail' %}"><img src="{% static 'clothes/image/tabler_heart.png' %}" width="25"></a>
+                            <a class="menu_link" href="{% url 'cart:cart_detail' %}"><img src="{% static 'clothes/image/ep_goods.png' %}" width="21"></a>
+                            <a class="menu_link" href="#"><img src="{% static 'clothes/image/login.png' %}" width="25"></a>
                         </li>
                     {% endif %}
-
-
-                {% endfor %}
-            </ul>
-        </li>
-        <li class="menu_cart_favourites">
-            {% with menu_items=cart|length %}
-                {% if cart|length > 0 %}
-                    <a href="{% url 'favourites:favourites_detail' %}"><img src="{% static 'clothes/image/Vector_d.png' %}" width="25"></a>     <a href="{% url 'cart:cart_detail' %}"><img src="{% static 'clothes/image/ep_goods_d.png' %}" width="21">}</a>
-                {% else %}
-                    <a href="{% url 'favourites:favourites_detail' %}"><img src="{% static 'clothes/image/Vector.png' %}" width="25"></a>      <a href="{% url 'cart:cart_detail' %}"><img src="{% static 'clothes/image/ep_goods.png' %}" width="21"></a>
-                {% endif %}
-            {% endwith %}
-        </li>
-    </ul>
+                {% endwith %}
+        </ul>
+    </div>
 </div>

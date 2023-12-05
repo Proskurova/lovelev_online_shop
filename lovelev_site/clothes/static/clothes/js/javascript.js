@@ -1,3 +1,5 @@
+// Для popup
+
 const popupLinks = document.querySelectorAll('.popup-link');
 const  body = document.querySelector('body');
 const  lockPadding = document.querySelectorAll('.lock-padding');
@@ -89,6 +91,43 @@ function bodyUnLock() {
     }, timeout);
 }
 
+// Для меню в мобилке
+let isMobile = {
+	Android: function() {return navigator.userAgent.match(/Android/i);},
+	BlackBerry: function() {return navigator.userAgent.match(/BlackBerry/i);},
+	iOS: function() {return navigator.userAgent.match(/iPhone|iPad|iPod/i);},
+	Opera: function() {return navigator.userAgent.match(/Opera Mini/i);},
+	Windows: function() {return navigator.userAgent.match(/IEMobile/i);},
+	any: function() {return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());}
+};
+		let bodyM=document.querySelector('body');
+if(isMobile.any()){
+		bodyM.classList.add('touch');
+		let arrow=document.querySelectorAll('.header_link');
+	for(i=0; i<arrow.length; i++){
+			// let thisLink=arrow[i].previousElementSibling;
+			let subMenu=arrow[i].nextElementSibling;
+			let thisArrow=arrow[i];
+
+			// thisLink.classList.add('parent');
+		arrow[i].addEventListener('click', function(){
+			subMenu.classList.toggle('open');
+			thisArrow.classList.toggle('active');
+		});
+	}
+}else{
+	bodyM.classList.add('mouse');
+}
+
+// Для меню бургер
+$(document).ready(function () {
+    $('.header_burger').click(function (event) {
+        $('.header_burger, .header_menu').toggleClass('active_burger');
+        $('body').toggleClass('lock');
+    });
+});
+
+// Для листания фото
 $(document).ready(function (){
     $('.photo_card_flipping').slick({
         arrows: true,
@@ -100,6 +139,7 @@ $(document).ready(function (){
     });
 });
 
+// Для форм
 $(function() {
     $('#question_user_form').on('submit', function(event) {
       event.preventDefault();

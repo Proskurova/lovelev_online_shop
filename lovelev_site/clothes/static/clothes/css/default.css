@@ -1,9 +1,5 @@
 html {
-    /*--container: 1200px;*/
-    /*--padding-container: 41px;*/
     box-sizing: border-box;
-    /*position: relative;*/
-    /*overflow: hidden;*/
 }
 
 *, *:before *:after {
@@ -66,4 +62,17 @@ fieldset {
     .section {
         display: flex;
     }
+    .wrapper {
+        width: 100%;
+        padding: 18px;
+    }
+    .menu_list {
+        display: block;
+    }
+    .sub-menu_list {
+        position: relative;
+        left: 0;
+        top: 0;
+    }
 }
+
