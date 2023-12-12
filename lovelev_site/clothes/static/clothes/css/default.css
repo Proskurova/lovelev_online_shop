@@ -8,7 +8,6 @@ html {
 
 body {
     font-family: "Noto Sans", sans-serif;
-    /*min-width: 1118px;*/
     min-height: 100vh;
     background-color: #FFF;
     color: #1E1E1E;
@@ -58,21 +57,21 @@ fieldset {
     transform: scale(0);
 }
 
-@media (max-width: 767px) {
-    .section {
-        display: flex;
-    }
-    .wrapper {
-        width: 100%;
-        padding: 18px;
-    }
-    .menu_list {
-        display: block;
-    }
-    .sub-menu_list {
-        position: relative;
-        left: 0;
-        top: 0;
-    }
-}
+/*@media (max-width: 767px) {*/
+/*    .section {*/
+/*        display: flex;*/
+/*    }*/
+/*    .wrapper {*/
+/*        width: 100%;*/
+/*        padding: 18px;*/
+/*    }*/
+/*    .menu_list {*/
+/*        display: block;*/
+/*    }*/
+/*    .sub-menu_list {*/
+/*        position: relative;*/
+/*        left: 0;*/
+/*        top: 0;*/
+/*    }*/
+/*}*/
 

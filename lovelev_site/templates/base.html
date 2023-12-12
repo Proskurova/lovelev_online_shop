@@ -23,27 +23,22 @@
     {% block extra_head %}{% endblock extra_head %}
 </head>
 <body>
-<header id="header" class="header lock-padding">
-{% show_menu %}
-</header>
-{% block body %}
-{% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
-{% endblock body %}
-{% block navigation %}
-{% endblock %}
-<!-- Footer -->
-<footer id="footer" class="lock-padding">
-{% show_footer %}
-</footer>
-<!-- Конец footer'а и страницы -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="{%  static 'clothes/js/slick.min.js' %}" defer></script>
-<script type="text/javascript" src="{%  static 'clothes/js/javascript.js' %}" defer></script>
+    <div class="wrapper">
+        <header id="header" class="header lock-padding">
+        {% show_menu %}
+        </header>
+        {% block body %}
+        {% endblock body %}
+        {% block navigation %}
+        {% endblock %}
+        <!-- Footer -->
+        <footer id="footer" class="lock-padding">
+        {% show_footer %}
+        </footer>
+        <!-- Конец footer'а и страницы -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{%  static 'clothes/js/slick.min.js' %}" defer></script>
+    <script type="text/javascript" src="{%  static 'clothes/js/javascript.js' %}" defer></script>
 </body>
 </html>

@@ -22,9 +22,11 @@ class HomeTemplateView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Меньше одежды — больше комплектов'
-        page = Product.objects.all()
+        page = Product.objects.filter(popular='True')
         poginator = Paginator(page, 3)
-        context['products'] = poginator.get_page(page)
+        products = poginator.get_page(page)
+        numbers = range(1, len(products)+1)
+        context['products'] = zip(products, numbers)
         return context
 
 
@@ -49,6 +51,7 @@ class Popular(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Популярное'
+        context['products'] = Product.objects.filter(popular='True')
         return context
 
 

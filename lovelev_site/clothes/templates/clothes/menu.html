@@ -1,13 +1,13 @@
 {% load static %}
 
 
-<div class="wrapper">
+<div class="_container">
     <div class="menu">
         <ul class="menu_list">
             <div class="header_burger">
                     <span></span>
             </div>
-            <li class="menu_logo">
+            <li class="menu_logo menu">
                 <a class="menu_link" href="{% url 'home' %}"> <img src="{% static 'clothes/image/logo.png' %}"></a>
             </li>
                 <nav class="header_menu">
@@ -40,8 +40,8 @@
                     {% else %}
                         <li class="menu_cart_favourites">
                             <a class="menu_link" href="{% url 'favourites:favourites_detail' %}"><img src="{% static 'clothes/image/tabler_heart.png' %}" width="25"></a>
-                            <a class="menu_link" href="{% url 'cart:cart_detail' %}"><img src="{% static 'clothes/image/ep_goods.png' %}" width="21"></a>
-                            <a class="menu_link" href="#"><img src="{% static 'clothes/image/login.png' %}" width="25"></a>
+                            <a class="menu_link menu_cart" href="{% url 'cart:cart_detail' %}"><img src="{% static 'clothes/image/ep_goods.png' %}" width="21"></a>
+                            <a class="menu_link menu_login" href="#"><img src="{% static 'clothes/image/login.png' %}" width="25"></a>
                         </li>
                     {% endif %}
                 {% endwith %}
