@@ -4,7 +4,6 @@
 
 {% block body %}
     <div class="_container">
-        <div class="gaps160"></div>
         <div class="title">
             <div class="font-400-44">{{ title }}</div>
             <div><div class="rectangle"></div></div>
@@ -24,7 +23,7 @@
                                     <a href="{% url 'favourites:favourites_add' p.id %}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
                                             <circle cx="18" cy="18" r="18" fill="white"/>
-                                            <image x="6" y="8" href="{% static 'clothes/image/Vector_s.png' %}" width="23" height="20" />
+                                            <span x="6" y="8" class="_icon-zeroHeart" width="23" height="20" />
                                         </svg>
                                     </a>
                                 </div>

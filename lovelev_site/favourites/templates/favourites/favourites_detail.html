@@ -3,7 +3,6 @@
 
 {% block body %}
     <div class="_container">
-        <div class="gaps160"></div>
         <div class="title">
             <div class="font-400-44">Вам понравилось</div>
             <div><div class="rectangle"></div></div>
@@ -14,7 +13,7 @@
                     {% with product=item.product %}
                     <div class="card">
                         <ul>
-                            <div class="cards">
+                            <div class="card">
                                 {% for image in product.images.all %}
                                   {% if image.default %}
                                     <a href="{% url 'product_detail' product.slug %}"><img src="{{ image.image.url }}"></a>
@@ -25,12 +24,12 @@
                                 <a href="{% url 'favourites:favourites_remove' product.pk %}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
                                         <circle cx="18" cy="18" r="18" fill="white"/>
-                                        <image x="6" y="8" href="{% static 'clothes/image/Vector_d.png' %}" width="23" height="20" />
+                                        <span x="6" y="8" class="_icon-fullHeart" width="23" height="20" />
                                     </svg>
                                 </a>
                             </div>
                         </ul>
-                        <div class="cards">
+                        <div class="card">
                             <p class="name_product font-500-18"><a href="{% url 'product_detail' product.slug %}">{{product.name}}</a></p>
                             <p class="price font-500-20">{{product.price}} BYN </p>
                             <p><a class="shop_button" href="{% url 'product_detail' product.slug %}">Купить</a></p>

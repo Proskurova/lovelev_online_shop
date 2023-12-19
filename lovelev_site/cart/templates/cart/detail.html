@@ -4,91 +4,53 @@
 
 {% block body %}
     <div class="_container">
-        <div class="gaps80"></div>
         <div class="cart_page">
-            <div class="cart">
-                <div class="font-600-24">Ваш заказ:</div>
+            <ul class="cart">
                 <div class="cart_goods">
+                    <div class="font-600-24 cart_goods_text">Ваш заказ:</div>
                     <div class="cart_line"></div>
-                    <table class="cart_table">
-                        <tbody>
+                    <div class="cart_table">
                         {% for item in cart %}
                             {% with product=item.product %}
-                                <tr>
-                                    <td class="cart_img">
+                                <ul class="cart_table_columns">
+                                    <li class="cart_img">
                                         {% for image in product.images.all %}
                                             {% if image.default %}
-                                                <a class="card_img" href="{% url 'product_detail' product.slug %}"> <img src="{{ image.image.url }}"></a>
+                                                <a href="{% url 'product_detail' product.slug %}"> <img src="{{ image.image.url }}"></a>
                                             {% endif %}
                                         {% endfor %}
-                                    </td>
-                                    <td class="cart_name">
-                                        <div class="font-400-16-black cart_name">{{ item.product.name }}</div>
-                                        <div class="font-400-12 cart_name">Размер: {{ item.size }}</div>
-                                    </td>
-                                    <td class="cart_update">
-                                        <form action="{% url 'cart:cart_update' product.id item.size %}" method="post">
-                                            <div class="number-input">
-                                              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" >
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                    <g clip-path="url(#clip0_141_4945)">
-                                                    <path d="M3.5 7.75H12.5" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.507042" stroke-miterlimit="10"/>
-                                                    <path d="M7.99975 15.7495C12.2798 15.7495 15.7495 12.2798 15.7495 7.99975C15.7495 3.71968 12.2798 0.25 7.99975 0.25C3.71968 0.25 0.25 3.71968 0.25 7.99975C0.25 12.2798 3.71968 15.7495 7.99975 15.7495Z" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.507042" stroke-miterlimit="10"/>
-                                                    </g>
-                                                    <defs>
-                                                    <clipPath id="clip0_141_4945">
-                                                    <rect width="16" height="16" fill="white"/>
-                                                    </clipPath>
-                                                    </defs>
-                                                    </svg>
-                                              </button>
-                                                {{ item.update_quantity_form.quantity }}
-                                                {{ item.update_quantity_form.update }}
-                                              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                    <g clip-path="url(#clip0_141_4951)">
-                                                    <path d="M8 12.5V3.5" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.507042" stroke-miterlimit="10"/>
-                                                    <path d="M3.5 8H12.5" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.507042" stroke-miterlimit="10"/>
-                                                    <path d="M7.99975 15.7495C12.2798 15.7495 15.7495 12.2798 15.7495 7.99975C15.7495 3.71968 12.2798 0.25 7.99975 0.25C3.71968 0.25 0.25 3.71968 0.25 7.99975C0.25 12.2798 3.71968 15.7495 7.99975 15.7495Z" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.507042" stroke-miterlimit="10"/>
-                                                    </g>
-                                                    <defs>
-                                                    <clipPath id="clip0_141_4951">
-                                                    <rect width="16" height="16" fill="white"/>
-                                                    </clipPath>
-                                                    </defs>
-                                                    </svg>
-                                              </button>
-                                            </div>
-                                            {% csrf_token %}
-                                        </form>
-                                    </td>
-                                    <td class="cart_total_price">{{ item.total_price }} BYN</td>
-                                    <td>
-                                        <a href="{% url 'cart:cart_remove' product.id item.size %}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                            <g clip-path="url(#clip0_141_4958)">
-                                            <path d="M4.73633 4.28906L11.2608 10.7648" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.5" stroke-miterlimit="10"/>
-                                            <path d="M4.76172 10.786L11.2372 4.26172" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.5" stroke-miterlimit="10"/>
-                                            <path d="M7.99975 15.7495C12.2798 15.7495 15.7495 12.2798 15.7495 7.99975C15.7495 3.71968 12.2798 0.25 7.99975 0.25C3.71968 0.25 0.25 3.71968 0.25 7.99975C0.25 12.2798 3.71968 15.7495 7.99975 15.7495Z" stroke="#1E1E1E" stroke-opacity="0.65" stroke-width="0.5" stroke-miterlimit="10"/>
-                                            </g>
-                                            <defs>
-                                            <clipPath id="clip0_141_4958">
-                                            <rect width="16" height="16" fill="white"/>
-                                            </clipPath>
-                                            </defs>
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
+                                    </li>
+                                    <li class="cart_name">
+                                        <div class="font-400-16-black">{{ item.product.name }}</div>
+                                        <div class="font-400-12">Размер: {{ item.size }}</div>
+                                    </li>
+                                    <li class="cart_update_delete">
+                                        <div class="cart_update">
+                                            <form action="{% url 'cart:cart_update' product.id item.size %}" method="post">
+                                                <div class="number-input">
+                                                  <button class="_icon-circle_minus" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                                                    {{ item.update_quantity_form.quantity }}
+                                                    {{ item.update_quantity_form.update }}
+                                                  <button class="_icon-circle_plus" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                                </div>
+                                                {% csrf_token %}
+                                            </form>
+                                        </div>
+                                        <div class="cart_total_price">{{ item.total_price }} BYN</div>
+                                        <div class="cart_delete">
+                                            <a class="_icon-circle_remove" href="{% url 'cart:cart_remove' product.id item.size %}"></a>
+                                        </div>
+                                    </li>
+                                </ul>
                             {% endwith %}
                         {% endfor %}
                         </tbody>
-                    </table>
+                    </div>
                     <div class="cart_line"></div>
                     <div class="font-400-16-black cart_sum">Сумма: {{ cart.get_total_price }} BYN</div>
                 </div>
-                <div class="font-500-18">Введите данные получателя</div>
-                <div>
+                <div class="form_cart">
+                    <div class="font-500-18 cart_form_text">Введите данные получателя</div>
                     <form action="{% url "orders:order_create" %}" method="post" id="cart_form">
                         {% csrf_token %}
                         <div class="cart_text ">Получатель (ФИО полностью)</div>
@@ -146,14 +108,11 @@
                     </form>
                     <a href="{% url 'information' 'privacy_policy' %}" class="font-400-12 card_text_center">Политика конфиденциальности</a>
                 </div>
-            </div>
+            </ul>
         </div>
         <a class="popup-link" href="#popup_created"></a>
         <div id="popup_created" class="popup">
-            <a href="#header" class="popup_close close-popup">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <path d="M30 11.75L28.25 10L20 18.25L11.75 10L10 11.75L18.25 20L10 28.25L11.75 30L20 21.75L28.25 30L30 28.25L21.75 20L30 11.75Z" fill="white"/>
-                </svg>
+            <a href="#header" class="popup_close close-popup _icon-cross">
             </a>
             <div class="popup_body">
                 <div class="popup_content">
