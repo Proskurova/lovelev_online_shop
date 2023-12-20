@@ -709,14 +709,23 @@ a.dropdown-item {
     border: 0;
 }
 
-/*______________________________________________________________________________*/
-.text_data {
-    width: 80%;
-    max-width: 742px;
-}
+/*______________________________(information.html)______________________*/
 .information {
+    padding-bottom: 100px;
+}
+.information_text {
+    width: 742px;
+    text-align: left;
+    color: rgba(30, 30, 30, 0.65);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    padding-top: 90px;
+}
+.contacts_information {
+    display: flex;
     width: 100%;
-    gap: 10px;
 }
 .information_contacts {
     padding: 20px 9px 20px 94px;
@@ -732,18 +741,56 @@ a.dropdown-item {
     width: 461px;
     height: 55px;
 }
-
-.information_text {
-    width: 742px;
-    text-align: left;
-    color: rgba(30, 30, 30, 0.65);
+.information_contacts_image {
+    width: 460px;
+    height: 300px;
+}
+.information_about_text {
+    width: 721px;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px;
-    padding-top: 90px;
+    line-height: 22px;
+    color: #1E1E1EA6;
+    padding: 68px 73px 55px 0;
 }
-
+.information_about_image {
+    width: 397px;
+    height: 475px;
+    flex-shrink: 0;
+}
+.information_delivery_text {
+    width: 732px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #1E1E1EA6;
+    padding: 100px 10px 133px 0;
+}
+.delivery_text, .payment_text {
+    display: flex;
+}
+.information_delivery_image {
+    width: 366px;
+    height: 367px;
+}
+.information_payment_text {
+    width: 544px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #1E1E1EA6;
+    padding: 114px 10px 143px 135px;
+}
+.information_payment_image, .information_payment_image img {
+    width: 366px;
+    height: 381px;
+}
+.point {
+    padding-right: 8px;
+}
 .information_image {
     width: 100%;
     max-width: 460px;
@@ -1459,6 +1506,57 @@ footer {
         width: 70%;
         padding-right: 0;
     }
+    /*______________________________(information.html)______________________*/
+    .title {
+        padding-top: 140px;
+        font-size: 40px;
+    }
+    .rectangle {
+        margin: 10px auto 30px;
+    }
+    .information_about_text {
+        width: 604px;
+        padding: 0 20px 0 0;
+    }
+    .information_about_image, .information_about_image img{
+        width: 292px;
+        height: 349px;
+    }
+    .information_delivery_text {
+        width: 480px;
+        padding: 56px 20px 152px 0;
+    }
+    .information_delivery_image, .information_delivery_image img {
+        width: 396px;
+        height: 399px;
+    }
+    .information_payment_text {
+        width: 480px;
+        padding: 111px 20px 178px 0;
+    }
+    .information_payment_image, .information_payment_image img {
+        width: 396px;
+        height: 413px;
+    }
+    .information_contacts {
+        padding: 33px 20px 31px 0;
+        width: 376px;
+        height: 262px;
+    }
+    .information_contacts_text {
+        width: 100%;
+    }
+    .information_contacts_image {
+        width: 500px;
+        height: 326px;
+    }
+    .information_contacts_image img {
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        padding-right: 0;
+    }
+
     /*________footer_____________*/
     .footer_contacts {
         min-width: 50%;
@@ -1678,6 +1776,55 @@ footer {
     }
     .cart_form_input {
         width: 440px;
+    }
+    /*______________________________(information.html)______________________*/
+    .title {
+        padding-top: 120px;
+        font-size: 35px;
+    }
+    .rectangle {
+        margin: 10px auto 40px;
+    }
+    .information {
+        display: block;
+        padding-bottom: 80px;
+    }
+    .information_about_text, .information_delivery_text, .information_payment_text {
+        width: 100%;
+        padding: 0 0 30px;
+    }
+    .about_text, .delivery_text, .payment_text {
+        width: 604px;
+        margin: 0 auto;
+    }
+    .information_about_image, .information_delivery_image, .information_payment_image{
+        margin: 0 auto;
+    }
+    .information_delivery_image, .information_delivery_image img {
+        width: 292px;
+        height: 295px;
+    }
+    .information_payment_image, .information_payment_image img {
+        width: 292px;
+        height: 304px;
+    }
+    .information_contacts {
+        width: 292px;
+        padding: 10px 20px 0 0;
+        height: 222px;
+    }
+    .information_contacts_text_title {
+        width: 354px;
+        position: absolute;
+        top: 185px;
+        left: 23%;
+    }
+    .information_contacts_image {
+        width: 292px;
+        height: 235px;
+    }
+    .information_contacts_image img{
+        height: 235px;
     }
     /*_________footer_____________*/
     footer ._container {
@@ -1902,6 +2049,28 @@ footer {
     .cart_form_input {
         width: 356px;
     }
+    /*______________________________(information.html)______________________*/
+    .information {
+        padding-bottom: 60px;
+    }
+    .rectangle {
+        margin: 10px auto 30px;
+    }
+    .about_text, .delivery_text, .payment_text {
+        width: 396px;
+    }
+    .contacts_information {
+        display: block;
+    }
+    .information_contacts {
+        padding: 0 0 30px 0;
+    }
+    .information_contacts_text_title {
+        left: 20%;
+    }
+    .information_contacts_image {
+        margin: 0 auto;
+    }
     /*_________footer_________*/
     footer ._container {
         width: 100%;
@@ -2061,6 +2230,32 @@ footer {
     .cart_form_input,  .button_order {
         width: 252px;
     }
+    .cart_total_price {
+        width: 140px;
+    }
+    /*______________________________(information.html)______________________*/
+    .information {
+        padding-bottom: 80px;
+    }
+    .title {
+        padding-top: 140px;
+        font-size: 30px;
+    }
+    .rectangle {
+        margin: 10px auto 40px;
+    }
+    .about_text, .delivery_text, .payment_text {
+        width: 292px;
+    }
+    .information_contacts {
+        padding: 20px 0 40px 0;
+    }
+    .information_contacts_text_title {
+        top: 195px;
+        left: 18px;
+        width: 272px;
+        text-align: center;
+    }
     /*_________footer_________*/
     footer ._container {
         width: 100%;
@@ -2118,6 +2313,25 @@ footer {
     }
     .cart_form_input,  .button_order {
         width: 212px;
+    }
+    /*______________________________(information.html)______________________*/
+    .title {
+        font-size: 25px;
+    }
+    .about_text , .delivery_text, .payment_text{
+        width: 232px;
+    }
+    .information_about_image, .information_delivery_image, .information_delivery_image img {
+        width: 232px;
+        height: 277px;
+    }
+    .information_payment_image, .information_payment_image img {
+        width: 232px;
+        height: 242px;
+    }
+    .information_contacts_image, .information_contacts_image img {
+        width: 232px;
+        height: 187px;
     }
 }
 

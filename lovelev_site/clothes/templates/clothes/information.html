@@ -4,70 +4,133 @@
 
 {% block body %}
     <div class="_container lock-padding">
-        <div class="title">
-            <div class="font-400-44">{{ title }}</div>
+        <div class="title font-400-44">
+            {{ title }}
             <div><div class="rectangle"></div></div>
         </div>
         <ul class="information">
         {% for c in content %}
             {%  if title.name == c.name %}
                 {% if c.slug == 'contacts' %}
-                    <div class="information_contacts">
-                        <ul class="information_contacts_text">
-                            <li>
-                                <a href="tel:80293474885"><div class="_icon-phone"></div></a>
-                            </li>
-                            <li>
-                                <span class="font-500-18">Телефон</span>
-                                <br>
-                                <a href="tel:80293474885"><span class="font-400-18-grey">+375 (29) 347-48-85</span></a>
-                            </li>
-                        </ul>
-                        <ul class="information_contacts_text">
-                            <li>
-                                <a href="#"><div class="_icon-email"></div></a>
-                            </li>
-                            <li>
-                                <span class="font-500-18">Email</span>
-                                <br>
-                                <a href="#"><span class="font-400-18-grey">lovelev_store@mail.ru</span></a>
-                            </li>
-                        </ul>
-                        <ul class="information_contacts_text">
-                            <li>
-                                <a href="https://instagram.com/lovelev_store?igshid=MzRlODBiNWFlZA==" target="_blank" rel="nofollow">
-                                    <div class="_icon-instagram"></div>
-                                </a>
-                            </li>
-                            <li>
-                                <span class="font-500-18">Instagram</span>
-                                <br>
-                                <a href="https://instagram.com/lovelev_store?igshid=MzRlODBiNWFlZA==" target="_blank" rel="nofollow">
-                                    <span class="font-400-18-grey">lovelev_store</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="information_contacts_text">
-                            <li>
-                                <a href="https://viber.click/375293474885" target="_blank" rel="nofollow">
-                                    <div class="_icon-viber"></div>
-                                </a>
-                            </li>
-                            <li>
-                                <span class="font-500-18">Viber</span>
-                                <br>
-                                <a href="https://viber.click/375293474885" target="_blank" rel="nofollow">
-                                    <span class="font-400-18-grey">+375 (29) 347-48-85</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="information_contacts_text">
-                            <li>
+                    <div class="contacts_information">
+                        <div class="information_contacts">
+                            <ul class="information_contacts_text">
+                                <li>
+                                    <a href="tel:80293474885"><div class="_icon-phone"></div></a>
+                                </li>
+                                <li>
+                                    <span class="font-500-18">Телефон</span>
+                                    <br>
+                                    <a href="tel:80293474885"><span class="font-400-18-grey">+375 (29) 347-48-85</span></a>
+                                </li>
+                            </ul>
+                            <ul class="information_contacts_text">
+                                <li>
+                                    <a href="#"><div class="_icon-email"></div></a>
+                                </li>
+                                <li>
+                                    <span class="font-500-18">Email</span>
+                                    <br>
+                                    <a href="#"><span class="font-400-18-grey">lovelev_store@mail.ru</span></a>
+                                </li>
+                            </ul>
+                            <ul class="information_contacts_text">
+                                <li>
+                                    <a href="https://instagram.com/lovelev_store?igshid=MzRlODBiNWFlZA==" target="_blank" rel="nofollow">
+                                        <div class="_icon-instagram"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <span class="font-500-18">Instagram</span>
+                                    <br>
+                                    <a href="https://instagram.com/lovelev_store?igshid=MzRlODBiNWFlZA==" target="_blank" rel="nofollow">
+                                        <span class="font-400-18-grey">lovelev_store</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="information_contacts_text">
+                                <li>
+                                    <a href="https://viber.click/375293474885" target="_blank" rel="nofollow">
+                                        <div class="_icon-viber"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <span class="font-500-18">Viber</span>
+                                    <br>
+                                    <a href="https://viber.click/375293474885" target="_blank" rel="nofollow">
+                                        <span class="font-400-18-grey">+375 (29) 347-48-85</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="information_contacts_text_title">
                                 <span class="font-400-14">Мы всегда на связи и рады помочь вам с выбором!</span>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
+                        <div class="information_contacts_image">
+                            <img src="{{ c.image.url }}">
+                        </div>
                     </div>
-                    <div class="information_image">
+                {% elif c.slug == 'about' %}
+                    <div class="information_about_text">
+                        <div class="about_text">
+                            Основатель бренда Lovelev Татьяна Левко всегда отдавала
+                            предпочтение стильной и качественной одежде и ещё с детства интересовалась модой.
+                            Благодаря этой любви в 2023 году были отшиты первые минимальные партии Lovelev.
+                            Татьяна решила создать свой собственный бренд, который бы отвечал её взглядам на моду и стиль.
+                            <br>
+                            <br>
+                            Одежда Lovelev - это универсальные вещи, которые будут актуальны всегда.
+                            Мы создаём базовые модели, которые можно носить как отдельно,
+                            так и в сочетании с другими нашими изделиями.
+                            <br>
+                            <br>
+                            Мы уверены, что базовая одежда должна быть не только удобной, но и красивой.
+                            Поэтому мы используем только высококачественные ткани и следим за каждой деталью
+                            в процессе производства.
+                            <br>
+                            <br>
+                            Мы гордимся тем, что наша одежда помогает женщинам чувствовать себя уверенно и красиво.
+                            Мы надеемся, что наша одежда станет вашим любимым выбором
+                            в гардеробе и поможет вам выразить свою индивидуальность.
+                        </div>
+                    </div>
+                    <div class="information_about_image">
+                        <img src="{{ c.image.url }}">
+                    </div>
+                {% elif c.slug == 'terms_delivery' %}
+                    <div class="information_delivery_text">
+                        <div class="delivery_text">
+                            <div class="point">•</div><div> Бесплатная примерка и доставка по Минску при условии выкупа одного изделия</div>
+                        </div>
+                        <div class="delivery_text">
+                            <div class="point">•</div><div>В случае отказа от покупки стоимость примерки — 10р</div>
+                        </div>
+                        <div class="delivery_text">
+                            <div class="point">•</div><div>Доставка по всей территории Республики Беларусь осуществляется почтой или Европочтой за счёт Покупателя</div>
+                        </div>
+                        <div class="delivery_text">
+                            <div class="point">•</div><div>Доставка в РФ осуществляется посредством компании СДЭК за счёт Покупателя</div>
+                        </div>
+                        <div class="delivery_text">
+                            <div class="point">•</div><div>Срок отправки заказа с момента оформления составляет 1–2 рабочих дня</div>
+                        </div>
+                    </div>
+                    <div class="information_delivery_image">
+                        <img src="{{ c.image.url }}">
+                    </div>
+                {% elif c.slug == 'payment_methods' %}
+                    <div class="information_payment_text">
+                        <div class="payment_text">
+                            <div class="point">•</div><div>Для жителей Минска возможна оплата после примерки или через сайт интернет — магазина</div>
+                        </div>
+                        <div class="payment_text">
+                            <div class="point">•</div><div>Для жителей других городов РБ возможна оплата наложенным платежом при получении на почте, Европочте или оплата через сайт интернет — магазина</div>
+                        </div>
+                        <div class="payment_text">
+                            <div class="point">•</div><div>Для жителей РФ возможна оплата через сайт интернет — магазина</div>
+                        </div>
+                    </div>
+                    <div class="information_payment_image">
                         <img src="{{ c.image.url }}">
                     </div>
                 {% else %}
@@ -81,6 +144,5 @@
             {% endif %}
         {% endfor %}
         </ul>
-        <div class="gaps120"></div>
     </div>
 {% endblock body %}
