@@ -1,51 +1,110 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{#{% block body %}#}
+{#    #}
+{#    <div class="_container">#}
+{#        <main class="page page_home">#}
+{#            <section class="page_main-block main-block">#}
+{#                <div class="main-block_title">Вам понравилось</div>#}
+{#                <div class="main-block_rectangle"></div>#}
+{#                <div class="main-block_phrase">Будьте в тренде, выбирайте свой лук!</div>#}
+{#            </section>#}
+{#            <section class="page_catalog-cards catalog-cards">#}
+{#                <div class="catalog-cards_container">#}
+{#                  {% for item in favourites %}#}
+{#                    {% with product=item.product %}#}
+{#                        {% for image in product.images.all %}#}
+{#                          {% if image.default %}#}
+{#                              <div class="catalog-cards_items item-catalog-cards">#}
+{#                                    <div class="item-catalog-cards_body">#}
+{#                                        <ul class="item-catalog-cards_img">#}
+{#                                            <div class="item-catalog-cards_img">#}
+{#                                                <a href="{% url 'product_detail' product.slug %}">#}
+{#                                                    <img src="{{ image.image.url }}">#}
+{#                                                </a>#}
+{#                                            </div>#}
+{#                                            <div class="heart">#}
+{#                                <a href="{% url 'favourites:favourites_remove' product.pk %}">#}
+{#                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">#}
+{#                                        <circle cx="18" cy="18" r="18" fill="white"/>#}
+{#                                        <span x="6" y="8" class="_icon-fullHeart" width="23" height="20" />#}
+{#                                    </svg>#}
+{#                                </a>#}
+{#                            </div>#}
+{#                          {% endif %}#}
+{#                        {% endfor %}#}
+{#                            #}
+{#                        </ul>#}
+{#                        <div class="card">#}
+{#                            <p class="name_product font-500-18"><a href="{% url 'product_detail' product.slug %}">{{product.name}}</a></p>#}
+{#                            <p class="price font-500-20">{{product.price}} BYN </p>#}
+{#                            <p><a class="shop_button" href="{% url 'product_detail' product.slug %}">Купить</a></p>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                {% endwith %}#}
+{#              {% endfor %}#}
+{#             </ul>#}
+{#        </div>#}
+{#        {% if categories|length > 2 %}#}
+{#            <div class="text_center">#}
+{#                <a class="button_transparent" href="{% url 'cat' %}">Смотреть все</a>#}
+{#            </div>#}
+{#        {% endif %}#}
+{#        <div class="gaps120"></div>#}
+{#    </div>#}
+{##}
+{#{% endblock body %}#}
 {% block body %}
     <div class="_container">
-        <div class="title">
-            <div class="font-400-44">Вам понравилось</div>
-            <div><div class="rectangle"></div></div>
-        </div>
-        <div class="cards wrapper">
-             <ul>
-                  {% for item in favourites %}
-                    {% with product=item.product %}
-                    <div class="card">
-                        <ul>
-                            <div class="card">
-                                {% for image in product.images.all %}
-                                  {% if image.default %}
-                                    <a href="{% url 'product_detail' product.slug %}"><img src="{{ image.image.url }}"></a>
-                                  {% endif %}
-                                {% endfor %}
-                            </div>
-                            <div class="heart">
-                                <a href="{% url 'favourites:favourites_remove' product.pk %}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                        <circle cx="18" cy="18" r="18" fill="white"/>
-                                        <span x="6" y="8" class="_icon-fullHeart" width="23" height="20" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </ul>
-                        <div class="card">
-                            <p class="name_product font-500-18"><a href="{% url 'product_detail' product.slug %}">{{product.name}}</a></p>
-                            <p class="price font-500-20">{{product.price}} BYN </p>
-                            <p><a class="shop_button" href="{% url 'product_detail' product.slug %}">Купить</a></p>
-                        </div>
-                    </div>
-
-                {% endwith %}
-              {% endfor %}
-             </ul>
-        </div>
-        {% if categories|length > 2 %}
-            <div class="text_center">
-                <a class="button_transparent" href="{% url 'cat' %}">Смотреть все</a>
-            </div>
-        {% endif %}
-        <div class="gaps120"></div>
+        <main class="page page_home">
+            <section class="page_main-block main-block">
+                <div class="main-block_title">{{ title }}</div>
+                <div class="main-block_rectangle"></div>
+                <div class="main-block_phrase">Будьте в тренде, выбирайте свой лук!</div>
+            </section>
+            <section class="page_catalog-cards catalog-cards">
+                <div class="catalog-cards_container">
+                    {% for item in favourites %}
+                        {% with product=item.product %}
+                            {% for image in product.images.all %}
+                                {% if image.default %}
+                                    <div class="catalog-cards_items item-catalog-cards">
+                                        <div class="item-catalog-cards_body">
+                                            <ul class="item-catalog-cards_img">
+                                                <div class="item-catalog-cards_img">
+                                                    <a href="{% url 'product_detail' product.slug %}">
+                                                        <img src="{{ image.image.url }}">
+                                                    </a>
+                                                </div>
+                                                <div class="heart">
+                                                    <a href="{% url 'favourites:favourites_remove' product.pk %}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                                            <circle cx="18" cy="18" r="18" fill="white"/>
+                                                            <span x="6" y="8" class="_icon-fullHeart" width="23" height="20" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </ul>
+                                            <div class="item-catalog-cards_name font-500-18">
+                                                <a href="{% url 'product_detail' product.slug %}">{{product.name}}</a>
+                                            </div>
+                                            <div class="item-catalog-cards_price font-500-20">{{product.price}} BYN </div>
+                                            <div class="item-catalog-cards_button"><a href="{% url 'product_detail' product.slug %}">Купить</a></div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+{#        {% if favourites|length > 4 %}#}
+{#            <div class="transparent_button">#}
+{#                <a class="button_transparent" href="{% url 'favourites:favourites_detail' %}">Смотреть все</a>#}
+{#            </div>#}
+{#        {% endif %}#}
     </div>
-
 {% endblock body %}

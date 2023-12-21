@@ -34,7 +34,10 @@ class ShopView(ListView):
     model = Product
     template_name = 'clothes/product_index.html'
     context_object_name = 'products'
-    paginate_by = 4
+    paginate_by = 8
+
+    def get_queryset(self):
+        return Product.objects.filter(available='True')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -46,12 +49,15 @@ class Popular(ListView):
     model = Product
     template_name = 'clothes/product_index.html'
     context_object_name = 'products'
-    paginate_by = 4
+    paginate_by = 8
+    allow_empty = False
+
+    def get_queryset(self):
+        return Product.objects.filter(popular='True')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Популярное'
-        context['products'] = Product.objects.filter(popular='True')
         return context
 
 
@@ -59,7 +65,7 @@ class Category(ListView):
     model = Category
     template_name = 'clothes/category.html'
     context_object_name = 'categories'
-    paginate_by = 4
+    paginate_by = 8
     # allow_empty = False
 
     def get_context_data(self, **kwargs):
@@ -72,11 +78,11 @@ class ProductCategory(ListView):
     model = Product
     template_name = 'clothes/product_index.html'
     context_object_name = 'products'
-    paginate_by = 4
+    paginate_by = 8
     # allow_empty = False
 
     def get_queryset(self):
-        return Product.objects.filter(cat__slug=self.kwargs['slug'])
+        return Product.objects.filter(cat__slug=self.kwargs['slug'], available='True')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -109,7 +115,6 @@ def question_user_form(request):
     if request.method == 'POST':
         form = QuestionUserForm(request.POST)
         if form.is_valid():
-            print(f"Проверка question____ {form.cleaned_data['question']}")
             data = {
                 'username': form.cleaned_data['username'],
                 'phone': form.cleaned_data['phone'],

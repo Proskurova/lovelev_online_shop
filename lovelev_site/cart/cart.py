@@ -5,6 +5,7 @@ from django.conf import settings
 
 from cart.forms import CartAddProductForm
 from clothes.models import Product
+from django.shortcuts import get_object_or_404
 
 
 class Cart(object):
@@ -25,11 +26,13 @@ class Cart(object):
         Перебираем товары в корзине и получаем товары из базы данных.
         """
         keys = self.cart.keys()
+
         # получаем товары и добавляем их в корзину
 
         cart = copy.deepcopy(self.cart)
         for key in keys:
-            product = Product.objects.get(id__in=tuple(key[0]))
+            id_product = (key.split(', '))[0]
+            product = get_object_or_404(Product, id=id_product)
             cart[key]['product'] = product
             cart[key]['update_quantity_form'] = CartAddProductForm(pk=product.id, initial={'quantity': cart[key]['quantity'], 'update': True})
 

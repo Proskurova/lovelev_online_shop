@@ -105,11 +105,9 @@ if(isMobile.any()){
 		bodyM.classList.add('touch');
 		let arrow=document.querySelectorAll('.header_link');
 	for(i=0; i<arrow.length; i++){
-			// let thisLink=arrow[i].previousElementSibling;
 			let subMenu=arrow[i].nextElementSibling;
 			let thisArrow=arrow[i];
 
-			// thisLink.classList.add('parent');
 		arrow[i].addEventListener('click', function(){
 			subMenu.classList.toggle('open');
 			thisArrow.classList.toggle('active');
@@ -151,7 +149,7 @@ $(function() {
         success: function(response) {
           if (response.success) {
               $("div.popup_text").hide();
-              $('#success').html('<div class="success success_text">Благодарим за проявленный интерес,<br>мы обязательно свяжемся с вами в течении суток!</div>').show();
+              $('#success').html('<div class="success_text">Благодарим за проявленный интерес,<br>мы обязательно свяжемся с вами в течении суток!</div>').show();
           } else {
               // Нада поработать над этим
               $('#popup_form_question').html('<div> + response.errors + </div>').show();
@@ -171,7 +169,7 @@ $(function() {
         dataType: 'json',
         success: function(response) {
           if (response.success) {
-              $("div.cart").hide();
+              $("div.form_cart").hide();
               $("#popup_created").html('<div class="success success_text">Ваш заказ принят! <br>Благодарим за заказ!</div>').show();
           } else {
               // Нада поработать над этим

@@ -22,7 +22,7 @@ def order_create(request):
                 cart.clear()
                 # запуск асинхронной задачи
                 # order_created.delay(order.id)
-                order_created(order.id)
+                # order_created(order.id)
                 return JsonResponse({'success': True})
             else:
                 return render(request, 'cart/detail.html', {'cart': cart, 'cart_form': cart_form})

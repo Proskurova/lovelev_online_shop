@@ -80,7 +80,6 @@ class Category(models.Model):
 class Information(models.Model):
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
-    text = models.TextField(blank=True, verbose_name="Текст")
     image = models.ImageField(upload_to="photos_data/%Y/%m/%d/", verbose_name="Фото")
 
     class Meta:

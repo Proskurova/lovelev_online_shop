@@ -106,6 +106,9 @@
   line-height: normal;
   letter-spacing: 1.68px;
 }
+._icon-logo:before:hover {
+   box-shadow: 3px 3px 1px #8891A8;
+}
 ._icon-minus:before {
   content: "\e911";
   font-size: 23px;

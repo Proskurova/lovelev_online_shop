@@ -2,17 +2,14 @@ from django import template
 from clothes.forms import QuestionUserForm
 
 from clothes.models import MenuItem
-from cart.cart import Cart
 register = template.Library()
 
 
 @register.inclusion_tag('clothes/menu.html', takes_context=True)
 def show_menu(context):
     menu_items = MenuItem.objects.filter(level=1)
-    # cart = Cart()
     return {
         "menu_items": menu_items,
-        # "card": cart,
     }
 
 

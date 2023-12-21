@@ -53,6 +53,12 @@ ul {
     gap: 8px;
     margin:0 auto;
 }
+._icon-email:hover, ._icon-instagram:hover, ._icon-viber:hover, ._icon-logo:hover {
+     box-shadow: 0 3px 3px 3px #8891A8;
+}
+.shop_button:hover {
+    box-shadow: 3px 3px 1px #8891A8;
+}
 .rectangle {
     width: 88px;
     height: 2px;
@@ -61,7 +67,7 @@ ul {
     margin: 10px auto 40px;
 }
 .heart {
-    margin-left: -65px;
+    margin-left: -50px;
     margin-top: 10px;
 }
 .arrow {
@@ -73,6 +79,12 @@ svg.circle {
   clip-path: circle(50%);
   height: 96px;
   width: 96px;
+}
+.transparent_button {
+    padding-bottom: 100px;
+}
+._icon-phone:hover {
+    box-shadow: 3px 3px 3px 3px #656C81;
 }
 /*__________________________________________Шрифты______________________________________________*/
 .font-500-18 {
@@ -189,7 +201,6 @@ svg.circle {
     color: #1E1E1E;
     align-self: stretch;
 }
-/*____________________________________________________________________________*/
 /*___________________ШАПКА_______________________________________*/
 header {
     background-color: #EEF0F5;
@@ -229,7 +240,6 @@ header {
 }
 .menu_list>li {
     display: flex;
-    /*margin: 22px 0 0 0;*/
 }
 .menu_link {
     overflow: hidden;
@@ -255,10 +265,12 @@ header {
     color: #1E1E1EA6;
     position: relative;
     margin-bottom: 2px;
-    /*z-index: 3;*/
 }
 .menu_item a:hover {
     color: #1E1E1E;
+}
+.menu .menu_link:hover {
+    box-shadow: 3px 3px 1px #8891A8;
 }
 .sub-header_list {
     min-width: 219px;
@@ -319,9 +331,7 @@ header {
 }
 .menu_arrow {
     display: none;
-    position: absolute;
-    left: 152px;
-    top: 8px;
+    margin: 5px 0 0 10px;
     width: 0;
     height: 0;
     border-top: 7px solid #1E1E1EA1;
@@ -341,8 +351,8 @@ body.touch .sub-header_list.open {
     background-color: #FFFFFF;
     display: block;
     position: relative;
-    left: 0;
-    top: 0;
+    left: -220px;
+    top: 20px;
 }
 body.touch .submenu {
     background-color: #FFFFFF;
@@ -352,6 +362,12 @@ body.touch .menu_arrow {
 }
 body.touch .header_link {
     color: #1E1E1E;
+}
+.menu_item>a {
+    display: flex;
+}
+.menu_item>a.header_link.active {
+    min-width: 185px;
 }
 /*_______________________Главная страница(home.html)_________________________________________*/
 .main {
@@ -383,9 +399,6 @@ body.touch .header_link {
 }
 .main_phrase_two_text {
     padding:20px 0 10px 0;
-}
-.main_button {
-    /*padding-left: 18%;*/
 }
 .main_photo {
     height: 400px;
@@ -493,7 +506,7 @@ body.touch .header_link {
 }
 .card_goods {
     width: 100%;
-    padding-top: 30px;
+    padding: 30px 0 180px 0;
 }
 .cards img {
     width: 100%;
@@ -517,9 +530,17 @@ body.touch .header_link {
     align-items: flex-start;
 }
 .photo_card_flipping {
+    height: 550px;
     padding-right: 104px;
-    min-width: 0;
+    width: 460px;
     position: relative;
+    overflow: hidden;
+}
+.photo_card_flipping img {
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+
 }
 .photo_card_flipping .slick-arrow {
     position: absolute;
@@ -663,7 +684,81 @@ body.touch .header_link {
     flex-shrink: 0;
     background-color: #EFF2F6;
 }
-/*_________________________________________________________*/
+/*_____________________(product_index.html)_______________________*/
+.page_main-block {
+    padding-top: 160px;
+}
+.main-block_title {
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    color: #1E1E1E;
+}
+.main-block_rectangle {
+    width: 88px;
+    height: 2px;
+    border-radius: 100px;
+    background: #1E1E1E;
+    margin: 10px auto 20px;
+}
+.main-block_phrase {
+    display: none;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    color: #1E1E1EA6;
+}
+.catalog-cards_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+}
+.item-catalog-cards {
+    position: relative;
+    padding: 20px 11px 40px 0;
+    min-height: 451px;
+}
+.item-catalog-cards_img {
+    width: 272px;
+    height: 331px;
+    overflow: hidden;
+    margin:0 auto;
+}
+.item-catalog-cards_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+.item-catalog-cards_name {
+    margin:0 auto 10px;
+    width: 272px;
+    height: 50px;
+}
+.item-catalog-cards_price {
+    margin:0 auto 20px;
+    text-align: center;
+}
+.item-catalog-cards_button {
+    margin: 0 auto;
+    display: flex;
+    width: 232px;
+    padding: 8px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    color: #FFFFFF;
+    background: #8891A8;
+}
+.item-catalog-cards_button:hover {
+    box-shadow: 3px 3px 3px 3px #656C81;
+}
+
+/*___________________________________________________________________*/
 .button_flipping_left {
     padding:0 354px 0 21px;
 
@@ -694,6 +789,9 @@ body.touch .header_link {
     align-items: center;
     border: 1px solid #1E1E1E;
     margin: 0 auto;
+}
+.button_transparent:hover {
+     box-shadow: 3px 3px 1px #8891A8;
 }
 a.dropdown-item {
     display: block;
@@ -728,6 +826,7 @@ a.dropdown-item {
     width: 100%;
 }
 .information_contacts {
+    position: relative;
     padding: 20px 9px 20px 94px;
     width: 461px;
     height: 262px;
@@ -1140,15 +1239,13 @@ input:focus::placeholder {
     color: #FFFFFF;
     margin: 0 auto;
 }
-/*___________________________________________*/
-
+/*_____________пагинация________________*/
 
 .list-pages {
     width: 100%;
 	text-align: center;
-	margin: 0 0 20px 0;
+	margin: 0 0 100px 0;
 }
-
 .list-pages-center {
     display: block;
 }
@@ -1168,14 +1265,14 @@ input:focus::placeholder {
 }
 .list-pages .page-num, .page-num-selected {
 	display: inline-block;
-	width: 60px;
-	height: 44px;
-	padding: 16px 0 0 0;
-	border: 1px solid #d0d0d0;
-	border-radius: 30px;
+    width: 50px;
+    height: 38px;
+    padding: 12px 0 0 0;
+    border: 1px solid #8891A8;
+    border-radius: 25px;
 }
 .list-pages .page-num:hover {
-	box-shadow: 3px 3px 1px #d0d0d0;
+	box-shadow: 3px 3px 1px #8891A8;
 }
 .list-pages .page-num-selected {
 	border: none;
@@ -1185,6 +1282,7 @@ input:focus::placeholder {
 .list-pages .page-num-selected:hover {
 	box-shadow: none;
 }
+/*______________________________________________________*/
 
 .card_text_center {
     padding-top: 20px;
@@ -1343,7 +1441,7 @@ footer {
         padding: 0 0 20px 0;
     }
     .menu_item {
-        max-width: 165px;
+        max-width: 185px;
     }
     /*__________Основная страница(home)______________*/
     .main {
@@ -1435,6 +1533,9 @@ footer {
         display: none;
     }
     /*______________________Карточка товара(product_detail.html)__________________*/
+    .card_goods {
+        padding: 30px 0 12px 0;
+    }
     .card_detail_goods {
         width: 500px;
     }
@@ -1556,7 +1657,10 @@ footer {
         object-position: 50% 50%;
         padding-right: 0;
     }
-
+    /*_____________________(product_index.html)_______________________*/
+    .main-block_title {
+        font-size: 40px;
+    }
     /*________footer_____________*/
     .footer_contacts {
         min-width: 50%;
@@ -1689,6 +1793,7 @@ footer {
      /*______________________Карточка товара(product_detail.html)__________________*/
     .card_goods {
         display: block;
+        padding: 30px 0 48px 0;
     }
     .photo_card_flipping {
         padding-right: 0;
@@ -1816,8 +1921,8 @@ footer {
     .information_contacts_text_title {
         width: 354px;
         position: absolute;
-        top: 185px;
-        left: 23%;
+        top: -51px;
+        left: 45%;
     }
     .information_contacts_image {
         width: 292px;
@@ -1825,6 +1930,10 @@ footer {
     }
     .information_contacts_image img{
         height: 235px;
+    }
+    /*_____________________(product_index.html)_______________________*/
+    .main-block_title {
+        font-size: 35px;
     }
     /*_________footer_____________*/
     footer ._container {
@@ -1968,6 +2077,9 @@ footer {
         padding-bottom: 60px;
     }
     /*______________________Карточка товара(product_detail.html)__________________*/
+    .card_goods {
+        padding: 30px 0 63px 0;
+    }
     .photo_card_flipping .slick-arrow.slick-next {
         right: 20px;
     }
@@ -2195,6 +2307,9 @@ footer {
         padding-bottom: 20px;
     }
     /*______________________Карточка товара(product_detail.html)__________________*/
+    .card_goods {
+        padding: 30px 0 81px 0;
+    }
     .text_card_name {
         font-size: 30px;
     }
@@ -2251,11 +2366,19 @@ footer {
         padding: 20px 0 40px 0;
     }
     .information_contacts_text_title {
-        top: 195px;
-        left: 18px;
+        left: 5px;
         width: 272px;
         text-align: center;
     }
+    /*__________________(product_index.html)_____________________*/
+    .main-block_phrase {
+        display: block;
+    }
+    .main-block_title {
+        font-size: 30px;
+    }
+
+
     /*_________footer_________*/
     footer ._container {
         width: 100%;

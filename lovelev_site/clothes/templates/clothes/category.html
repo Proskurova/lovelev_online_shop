@@ -3,18 +3,26 @@
 
 {% block body %}
     <div class="_container">
-        <div class="title">
-            <div class="font-400-44">{{ title }}</div>
-            <div><div class="rectangle"></div></div>
-        </div>
-        <div class="cards">
-            {% for category in categories %}
-                <a class="card" href="{% url 'category' category.slug %}"><img src="{{ category.photo.url }}">
-                    <p class="name_product font-500-18">{{category.name}}</p>
-                    <span class="shop_button">Купить</span>
-                </a>
-            {% endfor %}
-        </div>
+        <main class="page page_home">
+            <section class="page_main-block main-block">
+                <div class="main-block_title">{{ title }}</div>
+                <div class="main-block_rectangle"></div>
+                <div class="main-block_phrase">Будьте в тренде, выбирайте свой лук!</div>
+            </section>
+            <section class="page_catalog-cards catalog-cards">
+                <div class="catalog-cards_container">
+                    {% for category in categories %}
+                         <div class="catalog-cards_items item-catalog-cards">
+                            <a href="{% url 'category' category.slug %}">
+                                <img class="item-catalog-cards_img" src="{{ category.photo.url }}">
+                                <div class="item-catalog-cards_name font-500-18">{{category.name}}</div>
+                                <div class="item-catalog-cards_button">Купить</div>
+                            </a>
+                         </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
     </div>
 {% endblock body %}
 {% block navigation %}
@@ -44,6 +52,5 @@
             </ul>
         </nav>
         {% endif %}
-        <div class="gaps120"></div>
     </div>
 {% endblock %}

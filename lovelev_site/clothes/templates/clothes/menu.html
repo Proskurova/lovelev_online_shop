@@ -2,7 +2,7 @@
 
 
 <div class="_container">
-    <div class="menu">
+    <nav class="menu">
         <ul class="menu_list">
             <div class="header_burger">
                     <span></span>
@@ -15,7 +15,7 @@
                         {% for menu_item in menu_items %}
                             {% if menu_item.get_children %}
                                 <li class="menu_item">
-                                    <a class="header_link">{{ menu_item }}<span class="menu_arrow"></span></a>
+                                    <a class="header_link">{{ menu_item }}<div class="menu_arrow"></div></a>
 
                                     <ul class="sub-header_list">
                                         {% for m_item in menu_item.get_children %}
@@ -30,21 +30,22 @@
                         {% endfor %}
                     </ul>
                 </nav>
-                {% with menu_items=cart|length %}
+                {{ cart|length }}
+                {% with total_items=cart|length %}
                     {% if cart|length > 0 %}
                         <li class="menu_cart_favourites">
-                            <a class="menu_link menu_heart _icon-heart" href="{% url 'favourites:favourites_detail' %}"></a>
-                            <a class="menu_link menu_cart _icon-cart_goods" href="{% url 'cart:cart_detail' %}"><span>{{ lenght }}</span></a>
+                            <a class="menu_link menu_heart _icon-fullHeart" href="{% url 'favourites:favourites_detail' %}"></a>
+                            <a class="menu_link menu_cart _icon-cart_goods" href="{% url 'cart:cart_detail' %}"><span>{{ total_items }}</span></a>
                             <a class="menu_link menu_login _icon-iconoir_log-in" href="#"></a>
                         </li>
                     {% else %}
                         <li class="menu_cart_favourites">
                             <a class="menu_link menu_heart _icon-heart" href="{% url 'favourites:favourites_detail' %}"></a>
-                            <a class="menu_link menu_cart _icon-cart_goods" href="{% url 'cart:cart_detail' %}"><span>0</span></a>
+                            <a class="menu_link menu_cart _icon-cart_goods" href="{% url 'cart:cart_detail' %}"></a>
                             <a class="menu_link menu_login _icon-iconoir_log-in" href="#"></a>
                         </li>
                     {% endif %}
                 {% endwith %}
         </ul>
-    </div>
+    </nav>
 </div>
