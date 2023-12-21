@@ -31,7 +31,6 @@ def cart_remove(request, product_id, size):
 def cart_detail(request):
     cart = Cart(request)
     cart_form = OrderCreateForm
-    print(f"Проверка cart:---- {cart}/n{cart_form}")
     return render(request, 'cart/detail.html', {'cart': cart, 'cart_form': cart_form, 'title': 'Корзина покупок'})
 
 
