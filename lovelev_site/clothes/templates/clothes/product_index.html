@@ -23,14 +23,25 @@
                                                     <img src="{{ image.image.url }}">
                                                 </a>
                                             </div>
-                                            <div class="heart">
-                                                <a href="{% url 'favourites:favourites_add' p.id %}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                                        <circle cx="18" cy="18" r="18" fill="white"/>
-                                                        <span x="6" y="8" class="_icon-zeroHeart" width="23" height="20" />
-                                                    </svg>
-                                                </a>
-                                            </div>
+                                            {% if p.id in favourites.allid  %}
+                                                <div class="heart">
+                                                    <a href="{% url 'favourites:favourites_add' p.id %}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                                            <circle cx="18" cy="18" r="18" fill="white"/>
+                                                            <span class="_icon-fullHeart" width="23" height="20" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            {% else %}
+                                                <div class="heart">
+                                                    <a href="{% url 'favourites:favourites_add' p.id %}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                                            <circle cx="18" cy="18" r="18" fill="white"/>
+                                                            <span class="_icon-zeroHeart" width="23" height="20" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            {% endif %}
                                         </ul>
                                         <div class="item-catalog-cards_name font-500-18"><a href="{% url 'product_detail' p.slug %}">{{p.name}}</a></div>
                                         <div class="item-catalog-cards_price font-500-20">{{p.price}} BYN </div>

@@ -49,7 +49,6 @@
                     <div class="cart_line"></div>
                     <div class="font-400-16-black cart_sum">Сумма: {{ cart.get_total_price }} BYN</div>
                 </div>
-                <div class="success_text"></div>
                 <div class="form_cart">
                     <div class="font-500-18 cart_form_text">Введите данные получателя</div>
                     <form action="{% url "orders:order_create" %}" method="post" id="cart_form">
@@ -106,27 +105,13 @@
                             </div>
                             <input class="button_order font-400-16-white" type="submit" value="Заказать">
                         </div>
+                        <a href="{% url 'information' 'privacy_policy' %}" class="font-400-12 card_text_center">Политика конфиденциальности</a>
                     </form>
-                    <a href="{% url 'information' 'privacy_policy' %}" class="font-400-12 card_text_center">Политика конфиденциальности</a>
-                </div>
-            </ul>
-        </div>
-        <div id="popup_created" class="popup">
-            <a href="#header" class="popup_close close-popup _icon-cross">
-            </a>
-            <div class="popup_body">
-                <div class="popup_content">
-                    <div class="popup_text">
-                        <div class="success">
-                            <div class="success_text">
-                                Ваша заявка принята!
-                                <br>
-                                Благодарим за заказ!
-                            </div>
-                        </div>
+                    <div id="success_cat">
+                        <div class="success_text"></div>
                     </div>
                 </div>
-            </div>
+            </ul>
         </div>
     </div>
 {% endblock body %}

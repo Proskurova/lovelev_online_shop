@@ -64,3 +64,9 @@ class Favourites(object):
         # очищаем избранное в сессии
         del self.session[settings.FAVOURITES_SESSION_ID]
         self.save()
+
+    def allid(self):
+        allid = []
+        for item in self.favourites:
+            allid.append(int(item))
+        return allid

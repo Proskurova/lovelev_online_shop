@@ -16,22 +16,15 @@
                         {% csrf_token %}
                             <label for="{{ question_user_form.username.id_for_label }}" class="footer_form_text">{{ question_user_form.username.label }}<span class="text-danger">*</span></label>
                             <div>{{ question_user_form.username }}</div>
-                            <div class="form-error">{{ question_user_form.username.errors }}</div>
                             <label for="{{ question_user_form.phone.id_for_label }}" class="footer_form_text">{{ question_user_form.phone.label }}<span class="text-danger">*</span></label>
                             <div>{{ question_user_form.phone }}</div>
-                            <div class="form-error">
-                                <div class="errorlist">{{ question_user_form.phone.errors }}</div>
-                            </div>
                             <div class="footer_form_text">
                                 <label for="{{ question_user_form.question.id_for_label }}" class="footer_form_text">{{ question_user_form.question.label }}<span class="text-danger">*</span></label>
                                 {{ question_user_form.question }}
                             </div>
-                            <div class="form-error">
-                                <div class="errorlist">{{ question_user_form.question.errors }}</div></div>
                             <div class="footer_form_text question_text">
                                 <div class="form_padding">{{ question_user_form.approval }} {{question_user_form.approval.label }}</div>
                             </div>
-                            <div class="form-error">{{ question_user_form.approval.errors }}</div>
                             <div class="footer_form_text"><input id='check_value' class="button_footer" type="submit" value="Отправить"></div>
                         </form>
                     </div>

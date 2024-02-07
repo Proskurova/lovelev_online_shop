@@ -1,0 +1,15 @@
+{% with total_items=cart|length %}
+    {% if cart|length > 0 %}
+        <li class="menu_cart_favourites">
+            <a class="menu_link menu_heart" href="{% url 'favourites:favourites_detail' %}"><i class="_icon-heart"></i></a>
+            <a class="menu_link menu_cart" href="{% url 'cart:cart_detail' %}"><i class="_icon-cart_goods"></i><span>{{ total_items }}</span></a>
+            <a class="menu_link menu_login" href="{% url 'admin:index' %}"><i class="_icon-iconoir_log-in"></i></a>
+        </li>
+    {% else %}
+        <li class="menu_cart_favourites">
+            <a class="menu_link menu_heart" href="{% url 'favourites:favourites_detail' %}"><i class="_icon-heart"></i></a>
+            <a class="menu_link menu_cart" href="{% url 'cart:cart_detail' %}"><i class="_icon-cart_goods"></i></a>
+            <a class="menu_link menu_login" href="{% url 'admin:index' %}"><i class="_icon-iconoir_log-in"></i></a>
+        </li>
+    {% endif %}
+{% endwith %}

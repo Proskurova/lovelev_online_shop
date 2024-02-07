@@ -81,7 +81,7 @@
                                 <div class="name_category">
                                     <ul>
                                         <div class="name font-500-18">{{ cat.name }}</div>
-                                        <div class="arrow _icon-arrow_right"></div>
+                                        <div class="arrow"><i class="_icon-arrow_right"></i></div>
                                     </ul>
                                 </div>
                         </a>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="name_arrow">
                             <div class="name font-500-18">Выбрать</div>
-                            <div class="arrow _icon-arrow_right"></div>
+                            <div class="arrow"><i class="_icon-arrow_right"></i></div>
                         </div>
                     </a>
                 </div>
@@ -111,26 +111,35 @@
                     {% for product in products %}
                             {% for image in product.0.images.all %}
                                 {% if image.default %}
-                                    <div class="card card_{{ product.1 }}">
-                                        <ul>
+                                    <div class="card_{{ product.1 }}">
+                                        <div class="card_popular">
+                                            <ul>
+                                                <div class="card">
+                                                    <a href="{% url 'product_detail' product.0.slug %}">
+                                                        <img src="{{ image.image.url }}">
+                                                    </a>
+                                                </div>
+                                                {% if product.0.id in favourites.allid  %}
+                                                    <div class="heart">
+                                                        <a href="{% url 'favourites:favourites_add' product.0.id %}">
+                                                            <div class="circle"></div>
+                                                            <div class="popular_heart"><i class="_icon-fullHeart"></i></div>
+                                                        </a>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="heart">
+                                                        <a href="{% url 'favourites:favourites_add' product.0.id %}">
+                                                            <div class="circle"></div>
+                                                            <div class="popular_heart"><i class="_icon-zeroHeart"></i></div>
+                                                        </a>
+                                                    </div>
+                                                {% endif %}
+                                            </ul>
                                             <div class="card">
-                                                <a href="{% url 'product_detail' product.0.slug %}">
-                                                    <img src="{{ image.image.url }}">
-                                                </a>
+                                                <div class="name_product font-500-18"><a href="{% url 'product_detail' product.0.slug %}">{{ product.0.name }}</a></div>
+                                                <div class="price font-500-20">{{ product.0.price }} BYN </div>
+                                                <div class="button_card"><a class="shop_button" href="{% url 'product_detail' product.0.slug %}">Купить</a></div>
                                             </div>
-                                            <div class="heart">
-                                                <a href="{% url 'favourites:favourites_add' product.0.id %}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                                        <circle cx="18" cy="18" r="18" fill="white"/>
-                                                        <span x="6" y="8" class="_icon-zeroHeart" width="23" height="20" />
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </ul>
-                                        <div class="card">
-                                            <div class="name_product font-500-18"><a href="{% url 'product_detail' product.0.slug %}">{{ product.0.name }}</a></div>
-                                            <div class="price font-500-20">{{ product.0.price }} BYN </div>
-                                            <div class="card"><a class="shop_button" href="{% url 'product_detail' product.0.slug %}">Купить</a></div>
                                         </div>
                                     </div>
                                 {% endif %}

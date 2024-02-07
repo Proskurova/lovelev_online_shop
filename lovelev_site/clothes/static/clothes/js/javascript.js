@@ -117,16 +117,14 @@ if(isMobile.any()){
 	bodyM.classList.add('mouse');
 }
 
-// Для меню бургер
-$(document).ready(function () {
+
+$(document).ready(function (){
+    // Для меню бургер
     $('.header_burger').click(function (event) {
         $('.header_burger, .header_menu').toggleClass('active_burger');
         $('body').toggleClass('lock');
     });
-});
-
-// Для листания фото
-$(document).ready(function (){
+    // Для листания фото
     $('.photo_card_flipping').slick({
         arrows: true,
         adaptiveHeight: true,
@@ -135,10 +133,7 @@ $(document).ready(function (){
         speed: 100,
         infinite: false,
     });
-});
-
-// Для форм
-$(function() {
+    // Для форм
     $('#question_user_form').on('submit', function(event) {
       event.preventDefault();
       $.ajax({
@@ -151,15 +146,19 @@ $(function() {
               $("div.popup_text").hide();
               $('#success').html('<div class="success_text">Благодарим за проявленный интерес,<br>мы обязательно свяжемся с вами в течении суток!</div>').show();
           } else {
-              // Нада поработать над этим
-              $('#popup_form_question').html('<div> + response.errors + </div>').show();
+              $('#question_user_form').show()
+              let data = JSON.parse(response.errors)
+              for (let name in data) {
+                  for (let i in data[name]) {
+                      let $input = $("input[name='"+ name +"']");
+                      $input.after("<span class='form-error'>" + data[name][i].message + "</span>");
+                  }
+              }
           }
         }
       });
     });
-  });
 
-$(function() {
     $('#cart_form').on('submit', function(event) {
       event.preventDefault();
       $.ajax({
@@ -169,12 +168,30 @@ $(function() {
         dataType: 'json',
         success: function(response) {
           if (response.success) {
-              $("div.form_cart").hide();
-              $("#popup_created").html('<div class="success success_text">Ваш заказ принят! <br>Благодарим за заказ!</div>').show();
+              $("#cart_form").hide();
+              $(".cart_form_text").hide();
+              console.log(response.order)
+              $("#success_cat").html('<div class="success_text">Ваш заказ №' + response.order + ' принят! <br>Благодарим за заказ!</div>').show();
           } else {
-              // Нада поработать над этим
+              if (response.errors) {
+                  $('#cart_form').show()
+                  let data = JSON.parse(response.errors)
+                  for (let name in data) {
+                      for (let i in data[name]) {
+                          let $input = $("input[name='"+ name +"']");
+                          $input.after("<span class='form-error'>" + data[name][i].message + "</span>");
+                      }
+                  }
+              }
+              else {
+                  $('.cart_goods_text').after("<span class='form-error'>Заполни корзину товаром</span>")
+                  $('#cart_form').show();
+              }
           }
         }
       });
     });
-  });
+
+});
+
+

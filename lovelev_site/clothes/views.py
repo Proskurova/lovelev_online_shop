@@ -22,7 +22,7 @@ class HomeTemplateView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Меньше одежды — больше комплектов'
-        page = Product.objects.filter(popular='True')
+        page = Product.objects.filter(popular='True').select_related('cat')
         poginator = Paginator(page, 3)
         products = poginator.get_page(page)
         numbers = range(1, len(products)+1)
@@ -37,7 +37,7 @@ class ShopView(ListView):
     paginate_by = 8
 
     def get_queryset(self):
-        return Product.objects.filter(available='True')
+        return Product.objects.filter(available='True').select_related('cat')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -53,7 +53,7 @@ class Popular(ListView):
     allow_empty = False
 
     def get_queryset(self):
-        return Product.objects.filter(popular='True')
+        return Product.objects.filter(popular='True').select_related('cat')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -82,7 +82,7 @@ class ProductCategory(ListView):
     # allow_empty = False
 
     def get_queryset(self):
-        return Product.objects.filter(cat__slug=self.kwargs['slug'], available='True')
+        return Product.objects.filter(cat__slug=self.kwargs['slug'], available='True').select_related('cat')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -121,14 +121,24 @@ def question_user_form(request):
                 'question': form.cleaned_data['question'],
                 'approval': form.cleaned_data['approval'],
             }
-            send_question(data)
+            send_question.delay(data)
+            # send_question(data)
             return JsonResponse({'success': True})
         else:
-            result = JsonResponse({'success': False, 'errors': form.errors, 'question_user_form': form})
+            data = {
+                'success': False,
+                'errors': form.errors.as_json(),
+            }
+            result = JsonResponse(data)
             return result
     else:
-        question_user_form = QuestionUserForm(request)
-    return JsonResponse({'success': False, 'errors': question_user_form.errors, 'question_user_form': question_user_form})
+        form = QuestionUserForm(request)
+        data = {
+            'success': False,
+            'errors': form.errors.as_json(),
+            'question_user_form': question_user_form
+        }
+    return JsonResponse(data)
 
 
 

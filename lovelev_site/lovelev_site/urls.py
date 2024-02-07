@@ -27,6 +27,7 @@ urlpatterns = [
     path('favourites/', include('favourites.urls', namespace='favourites')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('', include('clothes.urls')),
+    path("__debug__/", include("debug_toolbar.urls")),
 
 ]
 

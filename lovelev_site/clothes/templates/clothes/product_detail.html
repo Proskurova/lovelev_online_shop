@@ -8,7 +8,7 @@
     <div class="_container">
         <div class="card_detail">
             <a href="{% url 'category' product.cat.slug %}">
-                <div class="_icon-arrow_left"></div>
+                <div class="card_detail_icon"><i class="_icon-arrow_left"></i></div>
             </a>
         </div>
         <ul class="card_goods">
@@ -59,11 +59,19 @@
                         <li>
                             <input class="card_button" type="submit" value="Добавить в корзину">
                         </li>
-                        <li class="card_favourites">
-                            <a href="{% url 'favourites:favourites_add' product.id %}">
-                                <div class="card_heart _icon-heart" width="25" height="24"></div>
-                            </a>
-                        </li>
+                        {% if product.id in favourites.allid  %}
+                            <li class="card_favourites">
+                                <a href="{% url 'favourites:favourites_add' product.id %}">
+                                    <div class="card_heart" width="25" height="24"><i class="_icon-fullHeart"></i></div>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="card_favourites">
+                                <a href="{% url 'favourites:favourites_add' product.id %}">
+                                    <div class="card_heart" width="25" height="24"><i class="_icon-zeroHeart"></i></div>
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </form>
 

@@ -8,7 +8,7 @@
                     <span></span>
             </div>
             <li class="menu_logo menu">
-                <a class="menu_link _icon-logo" href="{% url 'home' %}"></a>
+                <a class="menu_link" href="{% url 'home' %}"><i class="_icon-logo"></i></a>
             </li>
                 <nav class="header_menu">
                     <ul class="header_list">
@@ -30,22 +30,7 @@
                         {% endfor %}
                     </ul>
                 </nav>
-                {{ cart|length }}
-                {% with total_items=cart|length %}
-                    {% if cart|length > 0 %}
-                        <li class="menu_cart_favourites">
-                            <a class="menu_link menu_heart _icon-fullHeart" href="{% url 'favourites:favourites_detail' %}"></a>
-                            <a class="menu_link menu_cart _icon-cart_goods" href="{% url 'cart:cart_detail' %}"><span>{{ total_items }}</span></a>
-                            <a class="menu_link menu_login _icon-iconoir_log-in" href="#"></a>
-                        </li>
-                    {% else %}
-                        <li class="menu_cart_favourites">
-                            <a class="menu_link menu_heart _icon-heart" href="{% url 'favourites:favourites_detail' %}"></a>
-                            <a class="menu_link menu_cart _icon-cart_goods" href="{% url 'cart:cart_detail' %}"></a>
-                            <a class="menu_link menu_login _icon-iconoir_log-in" href="#"></a>
-                        </li>
-                    {% endif %}
-                {% endwith %}
+                {% include 'clothes/cart_favourites_views.html' %}
         </ul>
     </nav>
 </div>
