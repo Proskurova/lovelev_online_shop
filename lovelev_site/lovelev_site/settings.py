@@ -28,6 +28,7 @@ env = environ.Env(
 )
 # reading .env file
 env.read_env(os.path.join(BASE_DIR, '.env'))
+# env.read_env(env_file=Path('./docker/env/.env.dev'))
 
 CART_SESSION_ID = env('CART_SESSION_ID')
 FAVOURITES_SESSION_ID = env('FAVOURITES_SESSION_ID')
@@ -35,8 +36,11 @@ FAVOURITES_SESSION_ID = env('FAVOURITES_SESSION_ID')
 # CELERY
 CELERY_BROKER_URL = env('CELERY_BROKER_URL')
 CELERY_TASK_TRACK_STARTED = True
-CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Moscow'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -45,11 +49,11 @@ CELERY_TASK_SERIALIZER = 'json'
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = int(env('DEBUG', default=1))
 
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
-INTERNAL_IPS = env.list('INTERNAL_IPS')
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split()
+INTERNAL_IPS = env('INTERNAL_IPS')
 
 
 # Application definition
@@ -158,7 +162,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -117,7 +117,7 @@ def question_user_form(request):
         if form.is_valid():
             data = {
                 'username': form.cleaned_data['username'],
-                'phone': form.cleaned_data['phone'],
+                'phone': str(form.cleaned_data['phone']),
                 'question': form.cleaned_data['question'],
                 'approval': form.cleaned_data['approval'],
             }
